@@ -1,4 +1,4 @@
-﻿namespace BigEgg.ConsoleExtension.Parameters.Results
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Results
 {
     /// <summary>
     /// The base parser result.

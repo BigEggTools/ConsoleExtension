@@ -1,12 +1,12 @@
-﻿namespace BigEgg.ConsoleExtension.Tests.Parameters.Output
+﻿namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
 {
     using System;
     using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using BigEgg.ConsoleExtension.Parameters.Output;
-    using BigEgg.ConsoleExtension.Parameters.Results;
-    using BigEgg.ConsoleExtension.Parameters.Errors;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Output;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Results;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
 
     [TestClass]
     public class TextBuilderTest

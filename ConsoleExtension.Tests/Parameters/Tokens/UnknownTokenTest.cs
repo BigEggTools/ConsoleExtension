@@ -1,8 +1,8 @@
-﻿namespace BigEgg.ConsoleExtension.Tests.Parameters.Tokens
+﻿namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Tokens
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using BigEgg.ConsoleExtension.Parameters.Tokens;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
 
     [TestClass]
     public class UnknownTokenTest

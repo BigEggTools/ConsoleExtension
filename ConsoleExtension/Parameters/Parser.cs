@@ -1,13 +1,13 @@
-﻿namespace BigEgg.ConsoleExtension.Parameters
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    using BigEgg.ConsoleExtension.Parameters.Output;
-    using BigEgg.ConsoleExtension.Parameters.Results;
-    using BigEgg.ConsoleExtension.Parameters.Tokens;
-    using Logicals;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Logicals;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Output;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Results;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
 
     /// <summary>
     /// The parser to parse the console arguments

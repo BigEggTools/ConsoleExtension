@@ -1,11 +1,11 @@
-﻿namespace BigEgg.ConsoleExtension.Parameters
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters
 {
     using System;
 
     /// <summary>
     /// The attribute of adding the metadata of the parameter model's property
     /// </summary>
-    /// <seealso cref="BigEgg.ConsoleExtension.Parameters.PropertyBaseAttribute" />
+    /// <seealso cref="BigEgg.Tools.ConsoleExtension.Parameters.PropertyBaseAttribute" />
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public sealed class StringPropertyAttribute : PropertyBaseAttribute
     {

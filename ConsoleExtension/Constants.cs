@@ -1,4 +1,4 @@
-﻿namespace BigEgg.ConsoleExtension
+﻿namespace BigEgg.Tools.ConsoleExtension
 {
     internal static class Constants
     {

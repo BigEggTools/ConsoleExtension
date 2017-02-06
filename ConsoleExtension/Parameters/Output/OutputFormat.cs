@@ -1,6 +1,6 @@
-﻿namespace BigEgg.ConsoleExtension.Parameters.Output
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Output
 {
-    using BigEgg.ConsoleExtension.Parameters.Output.Text;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Output.Text;
 
     internal static class OutputFormat
     {

@@ -1,10 +1,10 @@
-﻿namespace BigEgg.ConsoleExtension.Tests.Parameters.Utils
+﻿namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Utils
 {
     using System;
     using System.Collections.Generic;
-    using BigEgg.ConsoleExtension.Parameters.Utils;
-
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
 
     [TestClass]
     public class StringExtensionsTest

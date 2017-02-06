@@ -1,11 +1,11 @@
-﻿namespace BigEgg.ConsoleExtension.Parameters.Output
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Output
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
 
-    using BigEgg.ConsoleExtension.Parameters.Utils;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
 
     internal abstract class OutputFormatBase
     {

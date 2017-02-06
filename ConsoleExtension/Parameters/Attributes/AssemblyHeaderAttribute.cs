@@ -1,4 +1,4 @@
-﻿namespace BigEgg.ConsoleExtension.Parameters
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters
 {
     using System;
     using System.Collections.Generic;

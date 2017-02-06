@@ -1,6 +1,6 @@
-﻿namespace BigEgg.ConsoleExtension.Tests.Parameters.FakeParameters
+﻿namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.FakeParameters
 {
-    using BigEgg.ConsoleExtension.Parameters;
+    using BigEgg.Tools.ConsoleExtension.Parameters;
 
     [Command("Clone", "Clone a repository into a new directory")]
     public class GitClone

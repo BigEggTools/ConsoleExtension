@@ -1,8 +1,8 @@
-﻿namespace BigEgg.ConsoleExtension.Parameters.Results
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Results
 {
     using System.Collections.Generic;
 
-    using BigEgg.ConsoleExtension.Parameters.Errors;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
 
     /// <summary>
     /// The parse failed result, contains parsing errors.

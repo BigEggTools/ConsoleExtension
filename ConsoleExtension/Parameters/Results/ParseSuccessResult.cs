@@ -1,11 +1,11 @@
-﻿namespace BigEgg.ConsoleExtension.Parameters.Results
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Results
 {
     using System;
 
     /// <summary>
     /// The parse success result, contains an instance with parsed value.
     /// </summary>
-    /// <seealso cref="BigEgg.ConsoleExtension.Parameters.Results.ParserResult" />
+    /// <seealso cref="BigEgg.Tools.ConsoleExtension.Parameters.Results.ParserResult" />
     internal sealed class ParseSuccessResult : ParserResult
     {
         /// <summary>

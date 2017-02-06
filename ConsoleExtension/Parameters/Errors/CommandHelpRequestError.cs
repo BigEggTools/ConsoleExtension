@@ -1,4 +1,4 @@
-﻿namespace BigEgg.ConsoleExtension.Parameters.Errors
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Errors
 {
     using System;
 

@@ -1,9 +1,9 @@
-﻿namespace BigEgg.ConsoleExtension.Tests.Parameters
+﻿namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters
 {
     using System.IO;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using BigEgg.ConsoleExtension.Parameters;
+    using BigEgg.Tools.ConsoleExtension.Parameters;
 
     [TestClass]
     public class ParserSettingsTest

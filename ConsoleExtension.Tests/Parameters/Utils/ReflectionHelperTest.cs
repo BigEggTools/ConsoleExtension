@@ -1,11 +1,11 @@
-﻿namespace BigEgg.ConsoleExtension.Tests.Parameters.Utils
+﻿namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Utils
 {
     using System.Reflection;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using BigEgg.ConsoleExtension.Parameters.Utils;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
 
-    using BigEgg.ConsoleExtension.Tests.Parameters.FakeParameters;
+    using BigEgg.Tools.ConsoleExtension.Tests.Parameters.FakeParameters;
 
     [TestClass]
     public class ReflectionHelperTest

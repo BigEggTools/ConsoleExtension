@@ -1,11 +1,11 @@
-﻿namespace BigEgg.ConsoleExtension.Parameters
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters
 {
     using System;
     using System.Globalization;
     using System.IO;
 
     /// <summary>
-    /// The setting model for <see cref="BigEgg.ConsoleExtension.Parameters.Parser"/>.
+    /// The setting model for <see cref="BigEgg.Tools.ConsoleExtension.Parameters.Parser"/>.
     /// </summary>
     /// <seealso cref="System.IDisposable" />
     public class ParserSettings : IDisposable

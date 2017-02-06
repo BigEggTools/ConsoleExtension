@@ -1,11 +1,11 @@
-﻿namespace BigEgg.ConsoleExtension.Parameters.Logicals
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Logicals
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    using BigEgg.ConsoleExtension.Parameters.Results;
-    using BigEgg.ConsoleExtension.Parameters.Tokens;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Results;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
 
     internal class ProcessorEngine
     {
