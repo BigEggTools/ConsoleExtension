@@ -3,5 +3,5 @@
 # ConsoleExtension
 The extension library for console program.
 Currently have 2 feature:
-* Output progress bar
-* Console arguments parser
+* Output progress bar ([Project Status](https://github.com/BigEggTools/ConsoleExtension/projects/2))
+* Console arguments parser ([Project Status](https://github.com/BigEggTools/ConsoleExtension/projects/1))
