@@ -1,9 +1,7 @@
-﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Output
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Utils
 {
     using System;
     using System.Reflection;
-
-    using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
 
     internal class ProgramInfo
     {

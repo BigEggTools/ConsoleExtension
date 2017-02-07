@@ -7,6 +7,7 @@
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
     using BigEgg.Tools.ConsoleExtension.Parameters.Results;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
 
     internal class TextBuilder
     {
