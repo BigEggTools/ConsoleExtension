@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Parameters\Errors\VersionRequestErrorTest.cs" />
     <Compile Include="Parameters\FakeParameters\GitClone.cs" />
     <Compile Include="Parameters\FakeParameters\EmptyClass.cs" />
     <Compile Include="Parameters\Output\OutputFormatBaseTest.cs" />
