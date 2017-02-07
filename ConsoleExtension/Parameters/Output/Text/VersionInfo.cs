@@ -15,11 +15,11 @@
         {
             formatStrings = new string[]
             {
-                    "Program version information:",
-                    $"Program Name: {INDEX_START_STRING}{NAME_REPLACER}",
-                    $"Program Version: {INDEX_START_STRING}{VERSION_REPLACER}",
-                    $"Program Product: {INDEX_START_STRING}{PRODUCT_REPLACER}",
-                    $"Program Copyright: {INDEX_START_STRING}{COPYRIGHT_REPLACER}",
+                "Program version information:",
+                $"Program Name: {INDEX_START_STRING}{NAME_REPLACER}",
+                $"Program Version: {INDEX_START_STRING}{VERSION_REPLACER}",
+                $"Program Product: {INDEX_START_STRING}{PRODUCT_REPLACER}",
+                $"Program Copyright: {INDEX_START_STRING}{COPYRIGHT_REPLACER}",
             };
         }
 

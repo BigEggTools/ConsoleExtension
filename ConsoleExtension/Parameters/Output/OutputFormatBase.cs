@@ -50,7 +50,7 @@
                     if (i == 0)
                     {
                         stringBuilder.AppendLine(
-                            result.Substring(0, Math.Min(result.Length, valueLenght)));
+                            result.Substring(0, Math.Min(result.Length, valueLenght + index)));
                     }
                     else
                     {

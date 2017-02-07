@@ -52,7 +52,10 @@
   <ItemGroup>
     <Compile Include="Parameters\FakeParameters\GitClone.cs" />
     <Compile Include="Parameters\FakeParameters\EmptyClass.cs" />
+    <Compile Include="Parameters\Output\OutputFormatBaseTest.cs" />
     <Compile Include="Parameters\Output\TextBuilderTest.cs" />
+    <Compile Include="Parameters\Output\Text\HeaderTest.cs" />
+    <Compile Include="Parameters\Output\Text\VersionInfoTest.cs" />
     <Compile Include="Parameters\ParserSettingsTest.cs" />
     <Compile Include="Parameters\Tokens\PropertyTokenTest.cs" />
     <Compile Include="Parameters\Tokens\UnknownTokenTest.cs" />
