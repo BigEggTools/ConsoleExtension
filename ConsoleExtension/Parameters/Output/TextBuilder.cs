@@ -22,11 +22,27 @@
 
         private static string BuildHelp(IEnumerable<Error> errors, int maximumDisplayWidth)
         {
+            if (errors.Any(e => e.ErrorType == ErrorType.DuplicateProperty)) { return BuildDuplicatePropertyText(errors, maximumDisplayWidth); }
             if (errors.Any(e => e.ErrorType == ErrorType.VersionRequest)) { return BuildVersionText(maximumDisplayWidth); }
             if (errors.Any(e => e.ErrorType == ErrorType.HelpRequest)) { return BuildHelpText(maximumDisplayWidth); }
             throw new NotImplementedException();
         }
 
+
+        private static string BuildDuplicatePropertyText(IEnumerable<Error> errors, int maximumDisplayWidth)
+        {
+            var error = errors.First(e => e.ErrorType == ErrorType.DuplicateProperty) as DuplicatePropertyError;
+
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(BuildHeader(maximumDisplayWidth));
+            stringBuilder.AppendLine(OutputFormat.ERROR_HEADER.Format(maximumDisplayWidth));
+            stringBuilder.AppendLine(OutputFormat.DUPLICATE_PROPERTY.Format(
+                error.PropertyName,
+                maximumDisplayWidth
+            ));
+
+            return stringBuilder.ToString();
+        }
 
         private static string BuildVersionText(int maximumDisplayWidth)
         {

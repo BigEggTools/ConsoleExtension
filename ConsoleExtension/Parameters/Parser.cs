@@ -69,9 +69,7 @@
             if (types == null) throw new ArgumentNullException("types");
             if (types.Length == 0) throw new ArgumentOutOfRangeException("types");
 
-            var tokens = args.ToList().ToTokens();
-
-            ParserResult result = engine.Handle(tokens, types.ToList());
+            ParserResult result = engine.Handle(args, types);
 
             settings.HelpWriter.Write(TextBuilder.Build(result, settings.MaximumDisplayWidth));
             return result.ResultType == ParserResultType.ParseSuccess ?

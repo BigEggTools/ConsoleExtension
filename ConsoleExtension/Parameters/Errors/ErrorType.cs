@@ -16,6 +16,10 @@
         /// <summary>
         /// User request the version info.
         /// </summary>
-        VersionRequest
+        VersionRequest,
+        /// <summary>
+        /// User input duplicate property
+        /// </summary>
+        DuplicateProperty
     }
 }

@@ -38,6 +38,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Parameters\Attributes\AssemblyHeaderAttribute.cs" />
     <Compile Include="Parameters\Attributes\CommandAttribute.cs" />
+    <Compile Include="Parameters\Errors\DuplicatePropertyError.cs" />
     <Compile Include="Parameters\Errors\Error.cs" />
     <Compile Include="Parameters\Errors\ErrorType.cs" />
     <Compile Include="Parameters\Errors\CommandHelpRequestError.cs" />
@@ -53,6 +54,8 @@
     <Compile Include="Parameters\Output\OutputFormat.cs" />
     <Compile Include="Parameters\Output\TextBuilder.cs" />
     <Compile Include="Parameters\Output\Text\Header.cs" />
+    <Compile Include="Parameters\Output\Text\DuplicateProperty.cs" />
+    <Compile Include="Parameters\Output\Text\ErrorHeader.cs" />
     <Compile Include="Parameters\Output\Text\VersionInfo.cs" />
     <Compile Include="Parameters\ParameterConstants.cs" />
     <Compile Include="Parameters\Parser.cs" />
@@ -64,6 +67,7 @@
     <Compile Include="Parameters\Results\ParserResultType.cs" />
     <Compile Include="Parameters\Results\ParseSuccessResult.cs" />
     <Compile Include="Parameters\Tokens\CommandToken.cs" />
+    <Compile Include="Parameters\Tokens\Exceptions\DuplicatePropertyException.cs" />
     <Compile Include="Parameters\Tokens\FlagToken.cs" />
     <Compile Include="Parameters\Tokens\PropertyToken.cs" />
     <Compile Include="Parameters\Tokens\Tokenizer.cs" />

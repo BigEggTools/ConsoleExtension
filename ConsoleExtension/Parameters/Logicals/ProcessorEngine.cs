@@ -4,8 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
     using BigEgg.Tools.ConsoleExtension.Parameters.Results;
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Tokens.Exceptions;
 
     internal class ProcessorEngine
     {
@@ -25,8 +27,18 @@
         }
 
 
-        public ParserResult Handle(IList<Token> tokens, IList<Type> types)
+        public ParserResult Handle(IEnumerable<string> args, Type[] types)
         {
+            IList<Token> tokens;
+            try
+            {
+                tokens = args.ToList().ToTokens();
+            }
+            catch (DuplicatePropertyException ex)
+            {
+                return new ParseFailedResult(new Error[] { new DuplicatePropertyError(ex.PropertyName) });
+            }
+
             ParserResult result = null;
             ParserResult newResult = null;
             foreach (var processor in processors)

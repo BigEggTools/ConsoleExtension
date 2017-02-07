@@ -6,8 +6,12 @@
     {
         private static VersionInfo versionInfo = new VersionInfo();
         private static Header header = new Header();
+        private static ErrorHeader errorHeader = new ErrorHeader();
+        private static DuplicateProperty duplicateProperty = new DuplicateProperty();
 
         public static VersionInfo VERSION_INFO { get { return versionInfo; } }
         public static Header HEADER { get { return header; } }
+        public static ErrorHeader ERROR_HEADER { get { return errorHeader; } }
+        public static DuplicateProperty DUPLICATE_PROPERTY { get { return duplicateProperty; } }
     }
 }

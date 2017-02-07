@@ -4,6 +4,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Tokens.Exceptions;
 
     [TestClass]
     public class TokenizerTest
@@ -101,6 +102,16 @@
 
             var helpToken = tokens.FirstOrDefault(token => token.TokenType == TokenType.Help);
             Assert.IsNotNull(helpToken);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(DuplicatePropertyException))]
+        public void ToTokensTest_Duplicate()
+        {
+            var command = "clone --help --help";
+            var args = command.Split(' ');
+
+            args.ToTokens();
         }
     }
 }
