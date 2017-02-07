@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class ErrorHeader : OutputFormatBase
+    internal class ErrorHeader : TextBase
     {
         private string[] formatStrings;
 

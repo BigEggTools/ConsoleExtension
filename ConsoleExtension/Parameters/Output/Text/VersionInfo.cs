@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class VersionInfo : OutputFormatBase
+    internal class VersionInfo : TextBase
     {
         private const string NAME_REPLACER = "|NAME|";
         private const string VERSION_REPLACER = "|VERSION|";

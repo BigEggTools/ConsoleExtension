@@ -1,14 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
+﻿namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
 {
     using System;
     using System.Collections.Generic;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using BigEgg.Tools.ConsoleExtension.Parameters.Output;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Output.Text;
 
     [TestClass]
-    public class OutputFormatBaseTest
+    public class TextBaseTest
     {
         [TestClass]
         public class FormatTest_NoIndex
@@ -182,7 +181,7 @@ namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
         }
 
 
-        internal class OutputFormat : OutputFormatBase
+        internal class OutputFormat : TextBase
         {
             public new string INDEX_START_STRING { get { return base.INDEX_START_STRING; } }
 

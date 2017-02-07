@@ -49,7 +49,7 @@
     <Compile Include="Parameters\Logicals\DefaultHelpProcessor.cs" />
     <Compile Include="Parameters\Logicals\ProcessorEngine.cs" />
     <Compile Include="Parameters\Logicals\VersionProcessor.cs" />
-    <Compile Include="Parameters\Output\OutputFormatBase.cs" />
+    <Compile Include="Parameters\Output\Text\TextBase.cs" />
     <Compile Include="Parameters\Output\ProgramInfo.cs" />
     <Compile Include="Parameters\Output\OutputFormat.cs" />
     <Compile Include="Parameters\Output\TextBuilder.cs" />

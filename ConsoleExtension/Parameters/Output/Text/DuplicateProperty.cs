@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
 
-    internal class DuplicateProperty : OutputFormatBase
+    internal class DuplicateProperty : TextBase
     {
         private const string NAME_REPLACER = "|property_name|";
         private string[] formatStrings;

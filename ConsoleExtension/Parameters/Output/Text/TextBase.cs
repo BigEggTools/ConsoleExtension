@@ -1,4 +1,4 @@
-﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Output
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Output.Text
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,7 @@
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
 
-    internal abstract class OutputFormatBase
+    internal abstract class TextBase
     {
         protected string INDEX_START_STRING = "|:";
 
