@@ -3,13 +3,13 @@
     using System;
     using System.Collections.Generic;
 
-    internal class Header : OutputFormatBase
+    internal class ApplicationHeader : OutputFormatBase
     {
         private const string NAME_REPLACER = "|NAME|";
         private const string VERSION_REPLACER = "|VERSION|";
         private string[] formatStrings;
 
-        public Header()
+        public ApplicationHeader()
         {
             formatStrings = new string[]
             {

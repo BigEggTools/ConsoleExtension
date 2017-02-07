@@ -11,7 +11,7 @@
         [TestMethod]
         public void FormatTest()
         {
-            var header = new Header();
+            var header = new ApplicationHeader();
             var text = header.Format("ConsoleExtension", "1.0.0", 80);
 
             var lines = text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);

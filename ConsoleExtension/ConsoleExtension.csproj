@@ -53,9 +53,9 @@
     <Compile Include="Parameters\Output\ProgramInfo.cs" />
     <Compile Include="Parameters\Output\OutputFormat.cs" />
     <Compile Include="Parameters\Output\TextBuilder.cs" />
-    <Compile Include="Parameters\Output\Text\Header.cs" />
     <Compile Include="Parameters\Output\Text\DuplicateProperty.cs" />
     <Compile Include="Parameters\Output\Text\ErrorHeader.cs" />
+    <Compile Include="Parameters\Output\Text\ApplicationHeader.cs" />
     <Compile Include="Parameters\Output\Text\VersionInfo.cs" />
     <Compile Include="Parameters\ParameterConstants.cs" />
     <Compile Include="Parameters\Parser.cs" />
