@@ -38,6 +38,8 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Parameters\Attributes\AssemblyHeaderAttribute.cs" />
     <Compile Include="Parameters\Attributes\CommandAttribute.cs" />
+    <Compile Include="Parameters\Attributes\StringPropertyAttribute.cs" />
+    <Compile Include="Parameters\Attributes\PropertyBaseAttribute.cs" />
     <Compile Include="Parameters\Errors\DuplicatePropertyError.cs" />
     <Compile Include="Parameters\Errors\Error.cs" />
     <Compile Include="Parameters\Errors\ErrorType.cs" />
@@ -49,10 +51,12 @@
     <Compile Include="Parameters\Logicals\DefaultHelpProcessor.cs" />
     <Compile Include="Parameters\Logicals\ProcessorEngine.cs" />
     <Compile Include="Parameters\Logicals\VersionProcessor.cs" />
-    <Compile Include="Parameters\Output\Text\TextBase.cs" />
-    <Compile Include="Parameters\Output\ProgramInfo.cs" />
     <Compile Include="Parameters\Output\OutputFormat.cs" />
     <Compile Include="Parameters\Output\TextBuilder.cs" />
+    <Compile Include="Parameters\Output\TextBuilder.OnError.cs" >
+      <DependentUpon>TextBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parameters\Output\Text\TextBase.cs" />
     <Compile Include="Parameters\Output\Text\DuplicateProperty.cs" />
     <Compile Include="Parameters\Output\Text\ErrorHeader.cs" />
     <Compile Include="Parameters\Output\Text\ApplicationHeader.cs" />
@@ -60,8 +64,6 @@
     <Compile Include="Parameters\ParameterConstants.cs" />
     <Compile Include="Parameters\Parser.cs" />
     <Compile Include="Parameters\ParserSettings.cs" />
-    <Compile Include="Parameters\Attributes\StringPropertyAttribute.cs" />
-    <Compile Include="Parameters\Attributes\PropertyBaseAttribute.cs" />
     <Compile Include="Parameters\Results\ParseFailedResult.cs" />
     <Compile Include="Parameters\Results\ParserResult.cs" />
     <Compile Include="Parameters\Results\ParserResultType.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Parameters\Tokens\UnknownToken.cs" />
     <Compile Include="Parameters\Utils\ReflectionHelper.cs" />
     <Compile Include="Parameters\Utils\StringExtensions.cs" />
+    <Compile Include="Parameters\Utils\ProgramInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
