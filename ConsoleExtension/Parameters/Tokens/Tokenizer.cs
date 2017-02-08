@@ -25,6 +25,10 @@
                     firstArgs = false;
                     continue;
                 }
+                if (firstArgs)
+                {
+                    firstArgs = false;
+                }
 
                 if (WithPrefixDash(argument))
                 {

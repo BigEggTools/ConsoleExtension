@@ -23,7 +23,7 @@
             };
         }
 
-        public string Format(string name, string version, string product, string copyright, int maximumDisplayWidth)
+        public virtual string Format(string name, string version, string product, string copyright, int maximumDisplayWidth)
         {
             return Format(formatStrings, new List<Tuple<string, string>>()
             {

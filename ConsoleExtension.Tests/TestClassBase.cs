@@ -11,9 +11,6 @@
     [TestClass]
     public class TestClassBase
     {
-        private readonly CompositionContainer container;
-
-
         protected TestClassBase()
         {
             AggregateCatalog catalog = new AggregateCatalog();
@@ -21,13 +18,13 @@
                 typeof(ProgramInfo), typeof(Tokenizer),
                 typeof(OutputFormat), typeof(TextBuilder)
             ));
-            container = new CompositionContainer(catalog);
+            Container = new CompositionContainer(catalog);
             CompositionBatch batch = new CompositionBatch();
-            batch.AddExportedValue(container);
-            container.Compose(batch);
+            batch.AddExportedValue(Container);
+            Container.Compose(batch);
         }
 
-        protected CompositionContainer Container { get { return container; } }
+        protected CompositionContainer Container { get; private set; }
 
 
         [TestInitialize]

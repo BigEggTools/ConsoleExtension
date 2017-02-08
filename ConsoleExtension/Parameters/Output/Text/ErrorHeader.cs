@@ -15,7 +15,7 @@
             };
         }
 
-        public string Format(int maximumDisplayWidth)
+        public virtual string Format(int maximumDisplayWidth)
         {
             return Format(formatStrings, new List<Tuple<string, string>>(), maximumDisplayWidth);
         }
