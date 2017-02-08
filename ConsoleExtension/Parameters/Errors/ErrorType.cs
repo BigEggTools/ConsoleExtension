@@ -20,6 +20,10 @@
         /// <summary>
         /// User input duplicate property
         /// </summary>
-        DuplicateProperty
+        DuplicateProperty,
+        /// <summary>
+        /// User input nothing
+        /// </summary>
+        EmptyInput
     }
 }

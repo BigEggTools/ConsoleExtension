@@ -8,5 +8,6 @@ namespace BigEgg.Tools.ConsoleExtension.Parameters.Output
         DuplicateProperty DUPLICATE_PROPERTY { get; }
         ErrorHeader ERROR_HEADER { get; }
         VersionInfo VERSION_INFO { get; }
+        EmptyInput EMPTY_INPUT { get; }
     }
 }

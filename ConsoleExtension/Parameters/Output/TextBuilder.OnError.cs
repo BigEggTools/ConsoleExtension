@@ -13,6 +13,7 @@
 
         private void InitErrorHandle()
         {
+            errorHandle.Add(ErrorType.EmptyInput, BuildEmptyInputText);
             errorHandle.Add(ErrorType.DuplicateProperty, BuildDuplicatePropertyText);
             errorHandle.Add(ErrorType.VersionRequest, BuildVersionText);
             errorHandle.Add(ErrorType.HelpRequest, BuildHelpText);
@@ -28,6 +29,18 @@
             throw new NotImplementedException();
         }
 
+
+        private string BuildEmptyInputText(IEnumerable<Error> errors, int maximumDisplayWidth)
+        {
+            var error = errors.First(e => e.ErrorType == ErrorType.EmptyInput) as DuplicatePropertyError;
+
+            var stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine(BuildHeader(maximumDisplayWidth));
+            stringBuilder.AppendLine(outputFormat.ERROR_HEADER.Format(maximumDisplayWidth));
+            stringBuilder.AppendLine(outputFormat.EMPTY_INPUT.Format(maximumDisplayWidth));
+
+            return stringBuilder.ToString();
+        }
 
         private string BuildDuplicatePropertyText(IEnumerable<Error> errors, int maximumDisplayWidth)
         {

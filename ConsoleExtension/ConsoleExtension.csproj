@@ -47,6 +47,7 @@
     <Compile Include="Parameters\Errors\CommandHelpRequestError.cs" />
     <Compile Include="Parameters\Errors\VersionRequestError.cs" />
     <Compile Include="Parameters\Errors\HelpRequestError.cs" />
+    <Compile Include="Parameters\Logicals\Processor\ArgumentProcessor.cs" />
     <Compile Include="Parameters\Logicals\Processor\CommandHelpProcessor.cs" />
     <Compile Include="Parameters\Logicals\Processor\IProcessor.cs" />
     <Compile Include="Parameters\Logicals\Processor\DefaultHelpProcessor.cs" />

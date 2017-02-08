@@ -2,8 +2,9 @@
 {
     internal enum ProcessorType
     {
-        PreProcess,
+        ArgumentCheck,
         Tokenize,
+        PreProcess,
         Version,
         Help,
         TypeParser

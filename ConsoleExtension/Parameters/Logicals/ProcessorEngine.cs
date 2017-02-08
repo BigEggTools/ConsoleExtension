@@ -21,11 +21,12 @@
         {
             priority = new Dictionary<ProcessorType, int>()
             {
-                { ProcessorType.PreProcess, 0 },
+                { ProcessorType.ArgumentCheck, 0 },
                 { ProcessorType.Tokenize, 10 },
-                { ProcessorType.Version, 20 },
-                { ProcessorType.Help, 30 },
-                { ProcessorType.TypeParser, 40 },
+                { ProcessorType.PreProcess, 20 },
+                { ProcessorType.Version, 30 },
+                { ProcessorType.Help, 40 },
+                { ProcessorType.TypeParser, 50 },
             };
         }
 
