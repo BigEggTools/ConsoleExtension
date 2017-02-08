@@ -1,12 +1,14 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Logicals
 {
     using System;
+    using System.ComponentModel.Composition;
     using System.Linq;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
 
+    [Export(typeof(IProcessor))]
     internal class CommandHelpProcessor : IProcessor
     {
         public ProcessorType ProcessorType { get { return ProcessorType.Help; } }

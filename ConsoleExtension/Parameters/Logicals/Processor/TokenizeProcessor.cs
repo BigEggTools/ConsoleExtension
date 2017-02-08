@@ -6,6 +6,7 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens.Exceptions;
 
+    [Export(typeof(IProcessor))]
     internal class TokenizeProcessor : IProcessor
     {
         private readonly ITokenizer tokenizer;
