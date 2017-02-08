@@ -12,13 +12,16 @@
         /// Initializes a new instance of the <see cref="ParseSuccessResult"/> class.
         /// </summary>
         /// <param name="value">The instance with parsed value.</param>
-        /// <exception cref="System.ArgumentNullException">The instance cannot be null.</exception>
-        public ParseSuccessResult(object value)
+        /// <param name="commandType">The parsed value type.</param>
+        /// <exception cref="System.ArgumentNullException">The instance and command type cannot be null.</exception>
+        public ParseSuccessResult(object value, Type commandType)
             : base(ParserResultType.ParseSuccess)
         {
             if (value == null) { throw new ArgumentNullException("value"); }
+            if (commandType == null) { throw new ArgumentNullException("commandType"); }
 
             Value = value;
+            CommandType = commandType;
         }
 
 
@@ -29,5 +32,13 @@
         /// The instance with parsed value.
         /// </value>
         public object Value { get; private set; }
+
+        /// <summary>
+        /// Gets the parsed value type.
+        /// </summary>
+        /// <value>
+        /// The parsed value type.
+        /// </value>
+        public Type CommandType { get; private set; }
     }
 }

@@ -5,10 +5,8 @@
     using System.ComponentModel.Composition;
     using System.Linq;
 
-    using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
     using BigEgg.Tools.ConsoleExtension.Parameters.Results;
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
-    using BigEgg.Tools.ConsoleExtension.Parameters.Tokens.Exceptions;
 
     [Export]
     internal class ProcessorEngine : IProcessorEngine
@@ -16,70 +14,49 @@
         private readonly IEnumerable<IProcessor> processors;
         private readonly ITokenizer tokenizer;
 
+        private static readonly IDictionary<ProcessorType, int> priority;
+
+
+        static ProcessorEngine()
+        {
+            priority = new Dictionary<ProcessorType, int>()
+            {
+                { ProcessorType.PreProcess, 0 },
+                { ProcessorType.Tokenize, 10 },
+                { ProcessorType.Version, 20 },
+                { ProcessorType.Help, 30 },
+                { ProcessorType.TypeParser, 40 },
+            };
+        }
 
         [ImportingConstructor]
         public ProcessorEngine([ImportMany] IEnumerable<IProcessor> processors, ITokenizer tokenizer)
         {
-            this.processors = processors;
+            this.processors = processors.OrderBy(processor => priority[processor.ProcessorType]);
             this.tokenizer = tokenizer;
         }
 
 
         public ParserResult Handle(IEnumerable<string> args, Type[] types, bool caseSensitive)
         {
-            IList<Token> tokens;
-            try
-            {
-                tokens = tokenizer.ToTokens(args);
-            }
-            catch (DuplicatePropertyException ex)
-            {
-                return new ParseFailedResult(new Error[] { new DuplicatePropertyError(ex.PropertyName) });
-            }
-
-            ParserResult result = null;
-            ParserResult newResult = null;
+            var context = new ProcessorContext(args, types, caseSensitive);
             foreach (var processor in processors)
             {
-                if (!processor.NeedType)
+                if (processor.CanProcess(context))
                 {
-                    newResult = processor.Process(tokens, null, caseSensitive);
-                    result = MergeResult(result, newResult);
-
-                    if (!ShouldContinue(result)) { return result; }
-                    else { continue; }
+                    processor.Process(context);
                 }
 
-                foreach (var type in types)
-                {
-                    newResult = processor.Process(tokens, type, caseSensitive);
-                    result = MergeResult(result, newResult);
-
-                    if (!ShouldContinue(result)) { return result; }
-                }
+                if (context.Errors.Any(error => error.StopProcessing)) { break; }
             }
-
-            return result;
-        }
-
-        private ParserResult MergeResult(ParserResult result1, ParserResult result2)
-        {
-            if (result1 == null || result2.ResultType == ParserResultType.ParseSuccess) { return result2; }
-            if (result2 == null || result1.ResultType == ParserResultType.ParseSuccess) { return result1; }
-
-            var failedResult1 = result1 as ParseFailedResult;
-            var failedResult2 = result2 as ParseFailedResult;
-
-            return new ParseFailedResult(failedResult1.Errors.Concat(failedResult2.Errors));
-        }
-
-        private bool ShouldContinue(ParserResult result)
-        {
-            if (result == null) { return true; }
-            if (result.ResultType == ParserResultType.ParseSuccess) { return false; }
-
-            var failedResult = result as ParseFailedResult;
-            return !failedResult.Errors.Any(error => error.StopProcessing);
+            if (context.Command != null)
+            {
+                return new ParseSuccessResult(context.Command, context.CommandType);
+            }
+            else
+            {
+                return new ParseFailedResult(context.Errors);
+            }
         }
     }
 }
