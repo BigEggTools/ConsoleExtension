@@ -2,26 +2,31 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.Composition;
     using System.Linq;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens.Exceptions;
 
-    internal static class Tokenizer
+    [Export(typeof(ITokenizer))]
+    internal class Tokenizer : ITokenizer
     {
-        public static IList<Token> ToTokens(this IList<string> args)
+        public IList<Token> ToTokens(IEnumerable<string> args)
         {
             var result = new Dictionary<string, Token>();
-            var index = 0;
-            if (!WithPrefixDash(args[0]))
-            {
-                AddToken(result, new CommandToken(args.First()));
-                index++;
-            }
+            if (!args.Any()) { return result.Values.ToList(); }
 
+            var firstArgs = true;
             var tokenName = string.Empty;
-            for (; index < args.Count; index++)
+            foreach (var argument in args)
             {
-                if (WithPrefixDash(args[index]))
+                if (firstArgs && !WithPrefixDash(argument))
+                {
+                    AddToken(result, new CommandToken(argument));
+                    firstArgs = false;
+                    continue;
+                }
+
+                if (WithPrefixDash(argument))
                 {
                     if (!string.IsNullOrWhiteSpace(tokenName))
                     {
@@ -29,17 +34,17 @@
                         AddToken(result, flagToken);
                         tokenName = string.Empty;
                     }
-                    tokenName = GetTokenName(args[index]);
+                    tokenName = GetTokenName(argument);
                 }
                 else
                 {
                     if (string.IsNullOrWhiteSpace(tokenName))
                     {
-                        AddToken(result, new UnknownToken(args[index]));
+                        AddToken(result, new UnknownToken(argument));
                     }
                     else
                     {
-                        AddToken(result, new PropertyToken(tokenName, args[index]));
+                        AddToken(result, new PropertyToken(tokenName, argument));
                         tokenName = string.Empty;
                     }
                 }
@@ -53,17 +58,17 @@
             return result.Values.ToList();
         }
 
-        private static bool WithPrefixDash(string arg)
+        private bool WithPrefixDash(string arg)
         {
             return arg.StartsWith(ParameterConstants.PROPERTY_NAME_PREFIX_DASH);
         }
 
-        private static string GetTokenName(string arg)
+        private string GetTokenName(string arg)
         {
             return arg.Substring(2);
         }
 
-        private static Token ParseFlagToken(string tokenName)
+        private Token ParseFlagToken(string tokenName)
         {
             if (tokenName.Equals(ParameterConstants.TOKEN_HELP_NAME, StringComparison.OrdinalIgnoreCase))
             {
@@ -78,7 +83,7 @@
             return new FlagToken(tokenName);
         }
 
-        private static void AddToken(IDictionary<string, Token> tokens, Token token)
+        private void AddToken(IDictionary<string, Token> tokens, Token token)
         {
             if (tokens.ContainsKey(token.Name)) { throw new DuplicatePropertyException(token.Name); }
             tokens.Add(token.Name, token);

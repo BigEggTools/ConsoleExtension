@@ -7,15 +7,16 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens.Exceptions;
 
     [TestClass]
-    public class TokenizerTest
+    public class TokenizerTest : TestClassBase
     {
         [TestMethod]
         public void ToTokensTest_WithCommand()
         {
+            var tokenizer = Container.GetExportedValue<ITokenizer>();
             var command = "clone --recursive --repository https://github.com/BigEggTools/JsonComparer.git --b master";
             var args = command.Split(' ');
 
-            var tokens = args.ToTokens();
+            var tokens = tokenizer.ToTokens(args);
             Assert.AreEqual(4, tokens.Count);
 
             var cloneToken = tokens.FirstOrDefault(token => token.TokenType == TokenType.Command);
@@ -40,20 +41,22 @@
         [TestMethod]
         public void ToTokensTest_NoCommand()
         {
+            var tokenizer = Container.GetExportedValue<ITokenizer>();
             var command = "--recursive --repository https://github.com/BigEggTools/JsonComparer.git --b master";
             var args = command.Split(' ');
 
-            var tokens = args.ToTokens();
+            var tokens = tokenizer.ToTokens(args);
             Assert.AreEqual(3, tokens.Count);
         }
 
         [TestMethod]
         public void ToTokensTest_Unknown()
         {
+            var tokenizer = Container.GetExportedValue<ITokenizer>();
             var command = "clone unknown --repository https://github.com/BigEggTools/JsonComparer.git --b master";
             var args = command.Split(' ');
 
-            var tokens = args.ToTokens();
+            var tokens = tokenizer.ToTokens(args);
             Assert.AreEqual(4, tokens.Count);
 
             var unknownToken = tokens.FirstOrDefault(token => token.TokenType == TokenType.Unknown);
@@ -64,10 +67,11 @@
         [TestMethod]
         public void ToTokensTest_Version()
         {
+            var tokenizer = Container.GetExportedValue<ITokenizer>();
             var command = "--version";
             var args = command.Split(' ');
 
-            var tokens = args.ToTokens();
+            var tokens = tokenizer.ToTokens(args);
             Assert.AreEqual(1, tokens.Count);
 
             var versionToken = tokens.FirstOrDefault(token => token.TokenType == TokenType.Version);
@@ -77,10 +81,11 @@
         [TestMethod]
         public void ToTokensTest_Help()
         {
+            var tokenizer = Container.GetExportedValue<ITokenizer>();
             var command = "--help";
             var args = command.Split(' ');
 
-            var tokens = args.ToTokens();
+            var tokens = tokenizer.ToTokens(args);
             Assert.AreEqual(1, tokens.Count);
 
             var helpToken = tokens.FirstOrDefault(token => token.TokenType == TokenType.Help);
@@ -90,10 +95,11 @@
         [TestMethod]
         public void ToTokensTest_CommandHelp()
         {
+            var tokenizer = Container.GetExportedValue<ITokenizer>();
             var command = "clone --help";
             var args = command.Split(' ');
 
-            var tokens = args.ToTokens();
+            var tokens = tokenizer.ToTokens(args);
             Assert.AreEqual(2, tokens.Count);
 
             var cloneToken = tokens.FirstOrDefault(token => token.TokenType == TokenType.Command);
@@ -108,10 +114,11 @@
         [ExpectedException(typeof(DuplicatePropertyException))]
         public void ToTokensTest_Duplicate()
         {
+            var tokenizer = Container.GetExportedValue<ITokenizer>();
             var command = "clone --help --help";
             var args = command.Split(' ');
 
-            args.ToTokens();
+            tokenizer.ToTokens(args);
         }
     }
 }

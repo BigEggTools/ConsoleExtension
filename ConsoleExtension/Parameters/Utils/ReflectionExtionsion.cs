@@ -4,18 +4,8 @@
     using System.Linq;
     using System.Reflection;
 
-    internal static class ReflectionHelper
+    internal static class ReflectionExtionsion
     {
-        public static TAttribute GetAssemblyAttribute<TAttribute>() where TAttribute : Attribute
-        {
-            return GetAssembly().GetCustomAttributes<TAttribute>().FirstOrDefault();
-        }
-
-        public static Assembly GetAssembly()
-        {
-            return Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
-        }
-
         public static CommandAttribute GetCommand(this Type type)
         {
             var attribute = type.GetTypeInfo()

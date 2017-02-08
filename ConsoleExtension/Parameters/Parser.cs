@@ -2,42 +2,47 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Logicals;
     using BigEgg.Tools.ConsoleExtension.Parameters.Output;
     using BigEgg.Tools.ConsoleExtension.Parameters.Results;
-    using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
+    using System.ComponentModel.Composition.Hosting;
 
     /// <summary>
     /// The parser to parse the console arguments
     /// </summary>
     public class Parser : IDisposable
     {
-        private static readonly Lazy<Parser> defaultParser = new Lazy<Parser>(() =>
-            new Parser()
-        );
         private readonly ParserSettings settings;
-        private readonly ProcessorEngine engine;
+        private readonly CompositionContainer container;
+
+        private readonly IProcessorEngine engine;
+        private readonly ITextBuilder textBuilder;
+
         private bool disposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Parser"/> class with a specific setting, <seealso cref="ParserSettings"/>.
         /// </summary>
-        public Parser()
-            : this(ParserSettings.Builder().WithDefault()
-                                        .Build())
+        /// <param name="container">The composition container.</param>
+        public Parser(CompositionContainer container)
+            : this(container,
+                   ParserSettings.Builder().WithDefault()
+                                           .Build())
         { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Parser"/> class with a specific setting, <seealso cref="ParserSettings"/>.
+        /// Initializes a new instance of the <see cref="Parser" /> class with a specific setting, <seealso cref="ParserSettings" />.
         /// </summary>
+        /// <param name="container">The composition container.</param>
         /// <param name="settings">The parser settings.</param>
-        public Parser(ParserSettings settings)
+        public Parser(CompositionContainer container, ParserSettings settings)
         {
+            this.container = container;
             this.settings = settings;
 
-            engine = new ProcessorEngine(this.settings);
+            engine = container.GetExportedValue<IProcessorEngine>();
+            textBuilder = container.GetExportedValue<ITextBuilder>();
         }
 
         /// <summary>
@@ -46,14 +51,6 @@
         ~Parser()
         {
             Dispose(false);
-        }
-
-        /// <summary>
-        /// Gets the singleton instance created with default settings.
-        /// </summary>
-        public static Parser Default
-        {
-            get { return defaultParser.Value; }
         }
 
 
@@ -69,9 +66,9 @@
             if (types == null) throw new ArgumentNullException("types");
             if (types.Length == 0) throw new ArgumentOutOfRangeException("types");
 
-            ParserResult result = engine.Handle(args, types);
+            ParserResult result = engine.Handle(args, types, settings.CaseSensitive);
 
-            settings.HelpWriter.Write(TextBuilder.Build(result, settings.MaximumDisplayWidth));
+            settings.HelpWriter.Write(textBuilder.Build(result, settings.MaximumDisplayWidth));
             return result.ResultType == ParserResultType.ParseSuccess ?
                 ((ParseSuccessResult)result).Value :
                 null;

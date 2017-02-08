@@ -2,16 +2,26 @@
 {
     using BigEgg.Tools.ConsoleExtension.Parameters.Results;
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
+    using System.ComponentModel.Composition;
 
-    internal partial class TextBuilder
+    [Export(typeof(ITextBuilder))]
+    internal partial class TextBuilder : ITextBuilder
     {
-        static TextBuilder()
+        private readonly IProgramInfo programInfo;
+        private readonly IOutputFormat outputFormat;
+
+
+        [ImportingConstructor]
+        public TextBuilder(IProgramInfo programInfo, IOutputFormat outputFormat)
         {
-            InitErrorHandle();
+            this.programInfo = programInfo;
+            this.outputFormat = outputFormat;
+
+            Initialize();
         }
 
 
-        internal static string Build(ParserResult result, int maximumDisplayWidth = Constants.DEFAULT_MAX_CONSOLE_LENGTH)
+        public string Build(ParserResult result, int maximumDisplayWidth = Constants.DEFAULT_MAX_CONSOLE_LENGTH)
         {
             if (result.ResultType == ParserResultType.ParseFailed)
             {
@@ -21,11 +31,16 @@
         }
 
 
-        private static string BuildHeader(int maximumDisplayWidth)
+        private void Initialize()
         {
-            return OutputFormat.APPLICATION_HEADER.Format(
-                ProgramInfo.Default.Title,
-                ProgramInfo.Default.Version,
+            InitErrorHandle();
+        }
+
+        private string BuildHeader(int maximumDisplayWidth)
+        {
+            return outputFormat.APPLICATION_HEADER.Format(
+                programInfo.Title,
+                programInfo.Version,
                 maximumDisplayWidth
             );
         }

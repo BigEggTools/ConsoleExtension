@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
@@ -49,11 +50,14 @@
     <Compile Include="Parameters\Logicals\CommandHelpProcessor.cs" />
     <Compile Include="Parameters\Logicals\IProcessor.cs" />
     <Compile Include="Parameters\Logicals\DefaultHelpProcessor.cs" />
+    <Compile Include="Parameters\Logicals\IProcessorEngine.cs" />
     <Compile Include="Parameters\Logicals\ProcessorEngine.cs" />
     <Compile Include="Parameters\Logicals\VersionProcessor.cs" />
+    <Compile Include="Parameters\Output\IOutputFormat.cs" />
+    <Compile Include="Parameters\Output\ITextBuilder.cs" />
     <Compile Include="Parameters\Output\OutputFormat.cs" />
     <Compile Include="Parameters\Output\TextBuilder.cs" />
-    <Compile Include="Parameters\Output\TextBuilder.OnError.cs" >
+    <Compile Include="Parameters\Output\TextBuilder.OnError.cs">
       <DependentUpon>TextBuilder.cs</DependentUpon>
     </Compile>
     <Compile Include="Parameters\Output\Text\TextBase.cs" />
@@ -71,6 +75,7 @@
     <Compile Include="Parameters\Tokens\CommandToken.cs" />
     <Compile Include="Parameters\Tokens\Exceptions\DuplicatePropertyException.cs" />
     <Compile Include="Parameters\Tokens\FlagToken.cs" />
+    <Compile Include="Parameters\Tokens\ITokenizer.cs" />
     <Compile Include="Parameters\Tokens\PropertyToken.cs" />
     <Compile Include="Parameters\Tokens\Tokenizer.cs" />
     <Compile Include="Parameters\Tokens\VersionToken.cs" />
@@ -78,7 +83,8 @@
     <Compile Include="Parameters\Tokens\Token.cs" />
     <Compile Include="Parameters\Tokens\TokenType.cs" />
     <Compile Include="Parameters\Tokens\UnknownToken.cs" />
-    <Compile Include="Parameters\Utils\ReflectionHelper.cs" />
+    <Compile Include="Parameters\Utils\IProgramInfo.cs" />
+    <Compile Include="Parameters\Utils\ReflectionExtionsion.cs" />
     <Compile Include="Parameters\Utils\StringExtensions.cs" />
     <Compile Include="Parameters\Utils\ProgramInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

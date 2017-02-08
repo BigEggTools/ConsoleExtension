@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -71,9 +72,9 @@
     <Compile Include="Parameters\Tokens\HelpTokenTest.cs" />
     <Compile Include="Parameters\Tokens\TokenizerTest.cs" />
     <Compile Include="Parameters\Utils\ProgramInfoTest.cs" />
-    <Compile Include="Parameters\Utils\ReflectionHelperTest.cs" />
     <Compile Include="Parameters\Utils\StringExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestClassBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ConsoleExtension\ConsoleExtension.csproj">

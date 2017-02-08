@@ -5,15 +5,16 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
 
     [TestClass]
-    public class ProgramInfoTest
+    public class ProgramInfoTest : TestClassBase
     {
         [TestMethod]
         public void DataTest()
         {
-            Assert.IsFalse(string.IsNullOrWhiteSpace(ProgramInfo.Default.Title));
-            Assert.IsFalse(string.IsNullOrWhiteSpace(ProgramInfo.Default.Version));
-            Assert.IsFalse(string.IsNullOrWhiteSpace(ProgramInfo.Default.Product));
-            Assert.IsFalse(string.IsNullOrWhiteSpace(ProgramInfo.Default.Copyright));
+            var programInfo = Container.GetExportedValue<IProgramInfo>();
+            Assert.IsFalse(string.IsNullOrWhiteSpace(programInfo.Title));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(programInfo.Version));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(programInfo.Product));
+            Assert.IsFalse(string.IsNullOrWhiteSpace(programInfo.Copyright));
         }
     }
 }

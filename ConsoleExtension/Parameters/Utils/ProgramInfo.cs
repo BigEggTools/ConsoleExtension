@@ -1,24 +1,19 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Utils
 {
     using System;
+    using System.ComponentModel.Composition;
+    using System.Linq;
     using System.Reflection;
 
-    internal class ProgramInfo
+    [Export(typeof(IProgramInfo))]
+    internal class ProgramInfo : IProgramInfo
     {
-        private static readonly Lazy<ProgramInfo> defaultHeaderText = new Lazy<ProgramInfo>(() => new ProgramInfo());
-
-
-        private ProgramInfo()
+        public ProgramInfo()
         {
-            Title = ReflectionHelper.GetAssembly().GetName().Name;
-            Version = ReflectionHelper.GetAssembly().GetName().Version.ToString();
-            Copyright = ReflectionHelper.GetAssemblyAttribute<AssemblyCopyrightAttribute>().Copyright;
-            Product = ReflectionHelper.GetAssemblyAttribute<AssemblyProductAttribute>().Product;
-        }
-
-        public static ProgramInfo Default
-        {
-            get { return defaultHeaderText.Value; }
+            Title = GetAssembly().GetName().Name;
+            Version = GetAssembly().GetName().Version.ToString();
+            Copyright = GetAssemblyAttribute<AssemblyCopyrightAttribute>().Copyright;
+            Product = GetAssemblyAttribute<AssemblyProductAttribute>().Product;
         }
 
 
@@ -29,5 +24,16 @@
         public string Copyright { get; private set; }
 
         public string Product { get; private set; }
+
+
+        private TAttribute GetAssemblyAttribute<TAttribute>() where TAttribute : Attribute
+        {
+            return GetAssembly().GetCustomAttributes<TAttribute>().FirstOrDefault();
+        }
+
+        private Assembly GetAssembly()
+        {
+            return Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
+        }
     }
 }

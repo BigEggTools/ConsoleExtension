@@ -1,17 +1,22 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Output
 {
     using BigEgg.Tools.ConsoleExtension.Parameters.Output.Text;
+    using System.ComponentModel.Composition;
 
-    internal static class OutputFormat
+    [Export(typeof(IOutputFormat))]
+    internal class OutputFormat : IOutputFormat
     {
-        private static VersionInfo versionInfo = new VersionInfo();
-        private static ApplicationHeader applicationHeader = new ApplicationHeader();
-        private static ErrorHeader errorHeader = new ErrorHeader();
-        private static DuplicateProperty duplicateProperty = new DuplicateProperty();
+        public OutputFormat()
+        {
+            VERSION_INFO = new VersionInfo();
+            APPLICATION_HEADER = new ApplicationHeader();
+            ERROR_HEADER = new ErrorHeader();
+            DUPLICATE_PROPERTY = new DuplicateProperty();
+        }
 
-        public static VersionInfo VERSION_INFO { get { return versionInfo; } }
-        public static ApplicationHeader APPLICATION_HEADER { get { return applicationHeader; } }
-        public static ErrorHeader ERROR_HEADER { get { return errorHeader; } }
-        public static DuplicateProperty DUPLICATE_PROPERTY { get { return duplicateProperty; } }
+        public VersionInfo VERSION_INFO { get; private set; }
+        public ApplicationHeader APPLICATION_HEADER { get; private set; }
+        public ErrorHeader ERROR_HEADER { get; private set; }
+        public DuplicateProperty DUPLICATE_PROPERTY { get; private set; }
     }
 }

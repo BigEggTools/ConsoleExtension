@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.Composition;
     using System.Linq;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
@@ -9,30 +10,27 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens.Exceptions;
 
-    internal class ProcessorEngine
+    [Export]
+    internal class ProcessorEngine : IProcessorEngine
     {
-        private readonly IList<IProcessor> processors;
-        private readonly ParserSettings settings;
+        private readonly IEnumerable<IProcessor> processors;
+        private readonly ITokenizer tokenizer;
 
-        public ProcessorEngine(ParserSettings settings)
+
+        [ImportingConstructor]
+        public ProcessorEngine([ImportMany] IEnumerable<IProcessor> processors, ITokenizer tokenizer)
         {
-            this.settings = settings;
-
-            processors = new List<IProcessor>()
-            {
-                new VersionProcessor(),
-                new CommandHelpProcessor(),
-                new DefaultHelpProcessor()
-            };
+            this.processors = processors;
+            this.tokenizer = tokenizer;
         }
 
 
-        public ParserResult Handle(IEnumerable<string> args, Type[] types)
+        public ParserResult Handle(IEnumerable<string> args, Type[] types, bool caseSensitive)
         {
             IList<Token> tokens;
             try
             {
-                tokens = args.ToList().ToTokens();
+                tokens = tokenizer.ToTokens(args);
             }
             catch (DuplicatePropertyException ex)
             {
@@ -45,7 +43,7 @@
             {
                 if (!processor.NeedType)
                 {
-                    newResult = processor.Process(tokens, null, settings.CaseSensitive);
+                    newResult = processor.Process(tokens, null, caseSensitive);
                     result = MergeResult(result, newResult);
 
                     if (!ShouldContinue(result)) { return result; }
@@ -54,7 +52,7 @@
 
                 foreach (var type in types)
                 {
-                    newResult = processor.Process(tokens, type, settings.CaseSensitive);
+                    newResult = processor.Process(tokens, type, caseSensitive);
                     result = MergeResult(result, newResult);
 
                     if (!ShouldContinue(result)) { return result; }
