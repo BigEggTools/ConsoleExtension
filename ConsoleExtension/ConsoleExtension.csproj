@@ -45,6 +45,7 @@
     <Compile Include="Parameters\Errors\Error.cs" />
     <Compile Include="Parameters\Errors\ErrorType.cs" />
     <Compile Include="Parameters\Errors\CommandHelpRequestError.cs" />
+    <Compile Include="Parameters\Errors\EmptyInputError.cs" />
     <Compile Include="Parameters\Errors\VersionRequestError.cs" />
     <Compile Include="Parameters\Errors\HelpRequestError.cs" />
     <Compile Include="Parameters\Logicals\Processor\ArgumentProcessor.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Parameters\Output\TextBuilder.OnError.cs">
       <DependentUpon>TextBuilder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Parameters\Output\Text\EmptyInput.cs" />
     <Compile Include="Parameters\Output\Text\TextBase.cs" />
     <Compile Include="Parameters\Output\Text\DuplicateProperty.cs" />
     <Compile Include="Parameters\Output\Text\ErrorHeader.cs" />

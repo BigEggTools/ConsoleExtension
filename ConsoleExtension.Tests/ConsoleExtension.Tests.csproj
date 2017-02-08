@@ -59,6 +59,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Parameters\Errors\EmptyInputErrorTest.cs" />
     <Compile Include="Parameters\Errors\DuplicatePropertyErrorTest.cs" />
     <Compile Include="Parameters\Errors\CommandHelpRequestErrorTest.cs" />
     <Compile Include="Parameters\Errors\HelpRequestErrorTest.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="Parameters\FakeParameters\GitClone.cs" />
     <Compile Include="Parameters\FakeParameters\EmptyClass.cs" />
     <Compile Include="Parameters\Output\Text\DuplicatePropertyTest.cs" />
+    <Compile Include="Parameters\Output\Text\EmptyInputTest.cs" />
     <Compile Include="Parameters\Output\Text\ErrorHeaderTest.cs" />
     <Compile Include="Parameters\Output\Text\TextBaseTest.cs" />
     <Compile Include="Parameters\Output\TextBuilderTest.cs" />
