@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BigEgg.Tools.ConsoleExtension.Parameters.Errors
+﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Errors
 {
     internal class DuplicatePropertyError : Error
     {

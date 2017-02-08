@@ -11,7 +11,7 @@
     [Export(typeof(IProcessor))]
     internal class CommandHelpProcessor : IProcessor
     {
-        public ProcessorType ProcessorType { get { return ProcessorType.Help; } }
+        public ProcessorType ProcessorType { get { return ProcessorType.CommandHelp; } }
 
         public bool CanProcess(ProcessorContext context)
         {

@@ -64,7 +64,7 @@
         {
             if (args == null) throw new ArgumentNullException("args");
             if (types == null) throw new ArgumentNullException("types");
-            if (types.Length == 0) throw new ArgumentOutOfRangeException("types");
+            if (types.Length == 0) throw new ArgumentException("types");
 
             ParserResult result = engine.Handle(args, types, settings.CaseSensitive);
 

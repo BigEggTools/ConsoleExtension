@@ -8,7 +8,7 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
 
     [Export(typeof(IProcessor))]
-    internal class DefaultHelpProcessor : IProcessor
+    internal class HelpProcessor : IProcessor
     {
         public ProcessorType ProcessorType { get { return ProcessorType.Help; } }
 

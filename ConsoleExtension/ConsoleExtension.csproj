@@ -48,10 +48,10 @@
     <Compile Include="Parameters\Errors\EmptyInputError.cs" />
     <Compile Include="Parameters\Errors\VersionRequestError.cs" />
     <Compile Include="Parameters\Errors\HelpRequestError.cs" />
-    <Compile Include="Parameters\Logicals\Processor\ArgumentProcessor.cs" />
+    <Compile Include="Parameters\Logicals\Processor\ArgumentCheckProcessor.cs" />
     <Compile Include="Parameters\Logicals\Processor\CommandHelpProcessor.cs" />
     <Compile Include="Parameters\Logicals\Processor\IProcessor.cs" />
-    <Compile Include="Parameters\Logicals\Processor\DefaultHelpProcessor.cs" />
+    <Compile Include="Parameters\Logicals\Processor\HelpProcessor.cs" />
     <Compile Include="Parameters\Logicals\IProcessorEngine.cs" />
     <Compile Include="Parameters\Logicals\ProcessorContext.cs" />
     <Compile Include="Parameters\Logicals\ProcessorEngine.cs" />

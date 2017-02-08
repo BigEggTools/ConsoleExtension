@@ -4,9 +4,10 @@
     {
         ArgumentCheck,
         Tokenize,
-        PreProcess,
         Version,
         Help,
-        TypeParser
+        ExtractCommand,
+        CommandHelp,
+        TypeParser,
     }
 }
