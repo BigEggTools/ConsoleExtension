@@ -50,14 +50,17 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Parameters\Errors\DuplicatePropertyErrorTest.cs" />
     <Compile Include="Parameters\Errors\CommandHelpRequestErrorTest.cs" />
     <Compile Include="Parameters\Errors\HelpRequestErrorTest.cs" />
     <Compile Include="Parameters\Errors\VersionRequestErrorTest.cs" />
     <Compile Include="Parameters\FakeParameters\GitClone.cs" />
     <Compile Include="Parameters\FakeParameters\EmptyClass.cs" />
+    <Compile Include="Parameters\Output\Text\DuplicatePropertyTest.cs" />
+    <Compile Include="Parameters\Output\Text\ErrorHeaderTest.cs" />
     <Compile Include="Parameters\Output\Text\TextBaseTest.cs" />
     <Compile Include="Parameters\Output\TextBuilderTest.cs" />
-    <Compile Include="Parameters\Output\Text\HeaderTest.cs" />
+    <Compile Include="Parameters\Output\Text\ApplicationHeaderTest.cs" />
     <Compile Include="Parameters\Output\Text\VersionInfoTest.cs" />
     <Compile Include="Parameters\ParserSettingsTest.cs" />
     <Compile Include="Parameters\Tokens\PropertyTokenTest.cs" />

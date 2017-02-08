@@ -6,17 +6,17 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Output.Text;
 
     [TestClass]
-    public class HeaderTest
+    public class DuplicatePropertyTest
     {
         [TestMethod]
         public void FormatTest()
         {
-            var header = new ApplicationHeader();
-            var text = header.Format("ConsoleExtension", "1.0.0", 80);
+            var header = new DuplicateProperty();
+            var text = header.Format("help", 80);
 
             var lines = text.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
             Assert.AreEqual(2, lines.Length);
-            Assert.AreEqual("ConsoleExtension: v1.0.0", lines[0]);
+            Assert.IsTrue(lines[0].Contains("'help'"));
         }
     }
 }
