@@ -24,6 +24,14 @@
         /// <summary>
         /// User input nothing
         /// </summary>
-        EmptyInput
+        EmptyInput,
+        /// <summary>
+        /// User input unknown command
+        /// </summary>
+        UnKnownCommand,
+        /// <summary>
+        /// User not input specific the command
+        /// </summary>
+        MissingCommand
     }
 }

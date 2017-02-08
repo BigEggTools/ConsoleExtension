@@ -1,5 +1,6 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Logicals
 {
+    using System;
     using System.ComponentModel.Composition;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
@@ -26,6 +27,8 @@
 
         public void Process(ProcessorContext context)
         {
+            if (!CanProcess(context)) { throw new InvalidOperationException(); }
+
             try
             {
                 context.Tokens = tokenizer.ToTokens(context.Arguments);
