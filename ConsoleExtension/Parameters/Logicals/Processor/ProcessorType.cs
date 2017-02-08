@@ -3,11 +3,12 @@
     internal enum ProcessorType
     {
         ArgumentCheck,
+        TypeCheck,
         Tokenize,
         Version,
         Help,
         ExtractCommand,
         CommandHelp,
-        TypeParser,
+        TypeParse
     }
 }

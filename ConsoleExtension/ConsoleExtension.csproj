@@ -41,6 +41,7 @@
     <Compile Include="Parameters\Attributes\CommandAttribute.cs" />
     <Compile Include="Parameters\Attributes\StringPropertyAttribute.cs" />
     <Compile Include="Parameters\Attributes\PropertyBaseAttribute.cs" />
+    <Compile Include="Parameters\Errors\InvalidCommandError.cs" />
     <Compile Include="Parameters\Errors\MissingCommandError.cs" />
     <Compile Include="Parameters\Errors\UnknownCommandError.cs" />
     <Compile Include="Parameters\Errors\DuplicatePropertyError.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Parameters\Errors\EmptyInputError.cs" />
     <Compile Include="Parameters\Errors\VersionRequestError.cs" />
     <Compile Include="Parameters\Errors\HelpRequestError.cs" />
+    <Compile Include="Parameters\Logicals\Processor\TypeCheckProcessor.cs" />
     <Compile Include="Parameters\Logicals\Processor\ArgumentCheckProcessor.cs" />
     <Compile Include="Parameters\Logicals\Processor\ExtractCommandProcessor.cs" />
     <Compile Include="Parameters\Logicals\Processor\CommandHelpProcessor.cs" />

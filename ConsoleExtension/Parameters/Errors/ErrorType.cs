@@ -32,6 +32,10 @@
         /// <summary>
         /// User not input specific the command
         /// </summary>
-        MissingCommand
+        MissingCommand,
+        /// <summary>
+        /// Developer used invalid command
+        /// </summary>
+        InvalidCommand
     }
 }
