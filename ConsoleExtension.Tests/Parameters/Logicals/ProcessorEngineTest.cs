@@ -1,4 +1,5 @@
-﻿using BigEgg.Tools.ConsoleExtension.Parameters.Logicals;
+﻿using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
+using BigEgg.Tools.ConsoleExtension.Parameters.Logicals;
 using BigEgg.Tools.ConsoleExtension.Tests.Parameters.FakeParameters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -87,6 +88,55 @@ namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Logicals
                 engine.Handle(new List<string>() { "clone", "--repository", "url" }, new Type[] { typeof(GitClone) }, false);
 
                 mockProcessor1.Verify(p => p.Process(It.IsAny<ProcessorContext>()), Times.Once);
+                mockProcessor2.Verify(p => p.Process(It.IsAny<ProcessorContext>()), Times.Once);
+            }
+
+            [TestMethod]
+            public void ProcessSequence_WithStopError()
+            {
+                var processor1Executed = false;
+                var error = new MockError(true);
+
+                var engine = mockContainer.GetExportedValue<IProcessorEngine>();
+                mockProcessor1.SetupGet(p => p.ProcessorType).Returns(ProcessorType.Help);
+                mockProcessor1.Setup(p => p.CanProcess(It.IsAny<ProcessorContext>())).Callback<ProcessorContext>(context => context.Errors.Add(error)).Returns(true);
+                mockProcessor2.SetupGet(p => p.ProcessorType).Returns(ProcessorType.CommandHelp);
+                mockProcessor2.Setup(p => p.CanProcess(It.IsAny<ProcessorContext>())).Callback(() => Assert.IsTrue(processor1Executed)).Returns(true);
+
+                engine.Handle(new List<string>() { "clone", "--repository", "url" }, new Type[] { typeof(GitClone) }, false);
+
+                mockProcessor1.Verify(p => p.Process(It.IsAny<ProcessorContext>()), Times.Once);
+                mockProcessor2.Verify(p => p.Process(It.IsAny<ProcessorContext>()), Times.Never);
+            }
+
+            [TestMethod]
+            public void ProcessSequence_WithNoneStopError()
+            {
+                var processor1Executed = false;
+                var error = new MockError(false);
+
+                var engine = mockContainer.GetExportedValue<IProcessorEngine>();
+                mockProcessor1.SetupGet(p => p.ProcessorType).Returns(ProcessorType.Help);
+                mockProcessor1.Setup(p => p.CanProcess(It.IsAny<ProcessorContext>()))
+                              .Callback<ProcessorContext>(context =>
+                              {
+                                  context.Errors.Add(error);
+                                  processor1Executed = true;
+                              }).Returns(true);
+                mockProcessor2.SetupGet(p => p.ProcessorType).Returns(ProcessorType.CommandHelp);
+                mockProcessor2.Setup(p => p.CanProcess(It.IsAny<ProcessorContext>())).Callback(() => Assert.IsTrue(processor1Executed)).Returns(true);
+
+                engine.Handle(new List<string>() { "clone", "--repository", "url" }, new Type[] { typeof(GitClone) }, false);
+
+                mockProcessor1.Verify(p => p.Process(It.IsAny<ProcessorContext>()), Times.Once);
+                mockProcessor2.Verify(p => p.Process(It.IsAny<ProcessorContext>()), Times.Once);
+            }
+
+            internal class MockError : Error
+            {
+                public MockError(bool stopProcessing) : base(ErrorType.HelpRequest, stopProcessing)
+                {
+                }
             }
         }
     }
