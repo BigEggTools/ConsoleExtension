@@ -59,13 +59,26 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Parameters\Errors\UnknownCommandErrorTest.cs" />
+    <Compile Include="Parameters\Errors\InvalidCommandErrorTest.cs" />
     <Compile Include="Parameters\Errors\EmptyInputErrorTest.cs" />
     <Compile Include="Parameters\Errors\DuplicatePropertyErrorTest.cs" />
     <Compile Include="Parameters\Errors\CommandHelpRequestErrorTest.cs" />
     <Compile Include="Parameters\Errors\HelpRequestErrorTest.cs" />
+    <Compile Include="Parameters\Errors\MissingCommandErrorTest.cs" />
     <Compile Include="Parameters\Errors\VersionRequestErrorTest.cs" />
+    <Compile Include="Parameters\FakeParameters\GitPull.cs" />
     <Compile Include="Parameters\FakeParameters\GitClone.cs" />
     <Compile Include="Parameters\FakeParameters\EmptyClass.cs" />
+    <Compile Include="Parameters\Logicals\ProcessorEngineTest.cs" />
+    <Compile Include="Parameters\Logicals\Processor\ArgumentCheckProcessorTest.cs" />
+    <Compile Include="Parameters\Logicals\Processor\CommandHelpProcessorTest.cs" />
+    <Compile Include="Parameters\Logicals\Processor\ExtractCommandProcessorTest.cs" />
+    <Compile Include="Parameters\Logicals\Processor\HelpProcessorTest.cs" />
+    <Compile Include="Parameters\Logicals\Processor\TokenCheckProcessorTest.cs" />
+    <Compile Include="Parameters\Logicals\Processor\TokenizeProcessorTest.cs" />
+    <Compile Include="Parameters\Logicals\Processor\TypeCheckProcessorTest.cs" />
+    <Compile Include="Parameters\Logicals\Processor\VersionProcessorTest.cs" />
     <Compile Include="Parameters\Output\Text\DuplicatePropertyTest.cs" />
     <Compile Include="Parameters\Output\Text\EmptyInputTest.cs" />
     <Compile Include="Parameters\Output\Text\ErrorHeaderTest.cs" />

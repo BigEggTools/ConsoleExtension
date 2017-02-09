@@ -12,7 +12,6 @@
     internal class ProcessorEngine : IProcessorEngine
     {
         private readonly IEnumerable<IProcessor> processors;
-        private readonly ITokenizer tokenizer;
 
         private static readonly IDictionary<ProcessorType, int> priority;
 
@@ -25,10 +24,9 @@
         }
 
         [ImportingConstructor]
-        public ProcessorEngine([ImportMany] IEnumerable<IProcessor> processors, ITokenizer tokenizer)
+        public ProcessorEngine([ImportMany] IEnumerable<IProcessor> processors)
         {
             this.processors = processors.OrderBy(processor => priority[processor.ProcessorType]);
-            this.tokenizer = tokenizer;
         }
 
 

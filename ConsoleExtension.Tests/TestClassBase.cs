@@ -4,9 +4,7 @@
     using System.ComponentModel.Composition.Hosting;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
-    using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
-    using ConsoleExtension.Parameters.Output;
+    using BigEgg.Tools.ConsoleExtension.Parameters;
 
     [TestClass]
     public class TestClassBase
@@ -14,10 +12,7 @@
         protected TestClassBase()
         {
             AggregateCatalog catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new TypeCatalog(
-                typeof(ProgramInfo), typeof(Tokenizer),
-                typeof(OutputFormat), typeof(TextBuilder)
-            ));
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(Parser).Assembly));
             Container = new CompositionContainer(catalog);
             CompositionBatch batch = new CompositionBatch();
             batch.AddExportedValue(Container);

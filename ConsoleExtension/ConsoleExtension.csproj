@@ -51,6 +51,7 @@
     <Compile Include="Parameters\Errors\EmptyInputError.cs" />
     <Compile Include="Parameters\Errors\VersionRequestError.cs" />
     <Compile Include="Parameters\Errors\HelpRequestError.cs" />
+    <Compile Include="Parameters\Logicals\Processor\TokenCheckProcessor.cs" />
     <Compile Include="Parameters\Logicals\Processor\TypeCheckProcessor.cs" />
     <Compile Include="Parameters\Logicals\Processor\ArgumentCheckProcessor.cs" />
     <Compile Include="Parameters\Logicals\Processor\ExtractCommandProcessor.cs" />
@@ -84,7 +85,6 @@
     <Compile Include="Parameters\Results\ParserResultType.cs" />
     <Compile Include="Parameters\Results\ParseSuccessResult.cs" />
     <Compile Include="Parameters\Tokens\CommandToken.cs" />
-    <Compile Include="Parameters\Tokens\Exceptions\DuplicatePropertyException.cs" />
     <Compile Include="Parameters\Tokens\FlagToken.cs" />
     <Compile Include="Parameters\Tokens\ITokenizer.cs" />
     <Compile Include="Parameters\Tokens\PropertyToken.cs" />

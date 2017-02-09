@@ -2,10 +2,9 @@
 {
     using System;
     using System.ComponentModel.Composition;
+    using System.Linq;
 
-    using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
-    using BigEgg.Tools.ConsoleExtension.Parameters.Tokens.Exceptions;
 
     [Export(typeof(IProcessor))]
     internal class TokenizeProcessor : IProcessor
@@ -22,21 +21,14 @@
 
         public bool CanProcess(ProcessorContext context)
         {
-            return context.Arguments != null;
+            return context.Arguments != null && context.Arguments.Any();
         }
 
         public void Process(ProcessorContext context)
         {
             if (!CanProcess(context)) { throw new InvalidOperationException(); }
 
-            try
-            {
-                context.Tokens = tokenizer.ToTokens(context.Arguments);
-            }
-            catch (DuplicatePropertyException ex)
-            {
-                context.Errors.Add(new DuplicatePropertyError(ex.PropertyName));
-            }
+            context.Tokens = tokenizer.ToTokens(context.Arguments);
         }
     }
 }

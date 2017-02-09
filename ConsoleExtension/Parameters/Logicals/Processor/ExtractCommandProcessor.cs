@@ -1,19 +1,21 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Logicals.Processor
 {
     using System;
+    using System.ComponentModel.Composition;
     using System.Linq;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
 
+    [Export(typeof(IProcessor))]
     internal class ExtractCommandProcessor : IProcessor
     {
         public ProcessorType ProcessorType { get { return ProcessorType.ExtractCommand; } }
 
         public bool CanProcess(ProcessorContext context)
         {
-            return !context.Tokens.Any(t => t.TokenType == TokenType.Help);
+            return true;
         }
 
         public void Process(ProcessorContext context)
@@ -34,11 +36,12 @@
             }
             else
             {
+                var commandName = context.CaseSensitive ? commandToken.Value : commandToken.Value.ToUpper();
                 var existCommands = context.Types.Select(type => new { type.GetCommand().Name, Type = type })
-                                 .ToDictionary(c => c.Name, c => c.Type);
-                var commandType = existCommands[commandToken.Value];
-                if (commandType != null)
+                                 .ToDictionary(c => context.CaseSensitive ? c.Name : c.Name.ToUpper(), c => c.Type);
+                if (existCommands.ContainsKey(commandName))
                 {
+                    var commandType = existCommands[commandName];
                     context.CommandType = commandType;
                 }
                 else
