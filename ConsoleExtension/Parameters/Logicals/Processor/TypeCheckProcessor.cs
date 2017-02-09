@@ -18,7 +18,7 @@
 
         public void Process(ProcessorContext context)
         {
-            var invalidCommandType = context.Types.First(type => type.GetCommand() == null);
+            var invalidCommandType = context.Types.FirstOrDefault(type => type.GetCommand() == null);
             if (invalidCommandType != null)
             {
                 context.Errors.Add(new InvalidCommandError(invalidCommandType.FullName));

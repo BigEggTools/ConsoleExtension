@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
-    using Errors;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
 
     internal class ProcessorContext
     {

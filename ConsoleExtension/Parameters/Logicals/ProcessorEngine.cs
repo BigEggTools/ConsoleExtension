@@ -8,7 +8,7 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Results;
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
 
-    [Export]
+    [Export(typeof(IProcessorEngine))]
     internal class ProcessorEngine : IProcessorEngine
     {
         private readonly IEnumerable<IProcessor> processors;
@@ -19,17 +19,9 @@
 
         static ProcessorEngine()
         {
-            priority = new Dictionary<ProcessorType, int>()
-            {
-                { ProcessorType.ArgumentCheck, (int)ProcessorType.ArgumentCheck },
-                { ProcessorType.TypeCheck,  (int)ProcessorType.TypeCheck },
-                { ProcessorType.Tokenize, (int) ProcessorType.Tokenize },
-                { ProcessorType.Version, (int) ProcessorType.Version },
-                { ProcessorType.Help,  (int)ProcessorType.Help },
-                { ProcessorType.ExtractCommand, (int) ProcessorType.ExtractCommand },
-                { ProcessorType.CommandHelp, (int) ProcessorType.CommandHelp },
-                { ProcessorType.TypeParse, (int) ProcessorType.TypeParse },
-            };
+            priority = Enum.GetValues(typeof(ProcessorType))
+                           .OfType<ProcessorType>()
+                           .ToDictionary(type => type, type => (int)type);
         }
 
         [ImportingConstructor]
