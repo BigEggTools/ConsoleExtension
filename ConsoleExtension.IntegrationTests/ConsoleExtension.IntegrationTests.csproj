@@ -30,17 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>BigEgg.Tools.ConsoleExtension.IntegrationTests.Parameters.EmptyInput</StartupObject>
+    <StartupObject>BigEgg.Tools.ConsoleExtension.IntegrationTests.Parameters.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Parameters\DuplicateProperty.cs" />
-    <Compile Include="Parameters\VersionRequest.cs" />
-    <Compile Include="Parameters\EmptyInput.cs" />
-    <Compile Include="Parameters\GitClone.cs" />
+    <Compile Include="Parameters\Program.cs" />
+    <Compile Include="Parameters\Params\GitClone.cs" />
     <Compile Include="ProgramBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

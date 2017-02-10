@@ -1,4 +1,4 @@
-﻿namespace BigEgg.Tools.ConsoleExtension.IntegrationTests.Parameters
+﻿namespace BigEgg.Tools.ConsoleExtension.IntegrationTests.Parameters.Params
 {
     using BigEgg.Tools.ConsoleExtension.Parameters;
 

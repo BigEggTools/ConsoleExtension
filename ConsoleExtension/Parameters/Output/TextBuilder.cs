@@ -1,21 +1,22 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Output
 {
+    using System.Collections.Generic;
+    using System.ComponentModel.Composition;
+    using System.Text;
+
     using BigEgg.Tools.ConsoleExtension.Parameters.Results;
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
-    using System.ComponentModel.Composition;
 
     [Export(typeof(ITextBuilder))]
     internal partial class TextBuilder : ITextBuilder
     {
         private readonly IProgramInfo programInfo;
-        private readonly IOutputFormat outputFormat;
 
 
         [ImportingConstructor]
-        public TextBuilder(IProgramInfo programInfo, IOutputFormat outputFormat)
+        public TextBuilder(IProgramInfo programInfo)
         {
             this.programInfo = programInfo;
-            this.outputFormat = outputFormat;
 
             Initialize();
         }
@@ -36,13 +37,14 @@
             InitErrorHandle();
         }
 
-        private string BuildHeader(int maximumDisplayWidth)
+        private string BuildString(List<string> lines, int maximumDisplayWidth)
         {
-            return outputFormat.APPLICATION_HEADER.Format(
-                programInfo.Title,
-                programInfo.Version,
-                maximumDisplayWidth
-            );
+            var stringBuilder = new StringBuilder();
+            lines.ForEach(line => stringBuilder.AppendLine(line.FormatWithIndex(maximumDisplayWidth)));
+            return stringBuilder.ToString();
         }
+
+
+        private string ApplicationHeaderText { get { return $"{programInfo.Title}: v{programInfo.Version}"; } }
     }
 }

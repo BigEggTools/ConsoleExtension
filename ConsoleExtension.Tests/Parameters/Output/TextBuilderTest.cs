@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
+﻿namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +10,6 @@ namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
     using BigEgg.Tools.ConsoleExtension.Parameters.Output;
-    using BigEgg.Tools.ConsoleExtension.Parameters.Output.Text;
     using BigEgg.Tools.ConsoleExtension.Parameters.Results;
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
 
@@ -20,7 +18,6 @@ namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
     {
         private readonly CompositionContainer mockContainer;
         private Mock<IProgramInfo> mockProgramInfo = new Mock<IProgramInfo>();
-        private Mock<IOutputFormat> mockOutputFormat = new Mock<IOutputFormat>();
 
         public TextBuilderTest()
         {
@@ -30,7 +27,6 @@ namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
             ));
             mockContainer = new CompositionContainer(catalog);
             mockContainer.ComposeExportedValue(mockProgramInfo.Object);
-            mockContainer.ComposeExportedValue(mockOutputFormat.Object);
 
             CompositionBatch batch = new CompositionBatch();
             batch.AddExportedValue(mockContainer);
@@ -46,7 +42,6 @@ namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
         protected override void OnTestCleanup()
         {
             mockProgramInfo.Reset();
-            mockOutputFormat.Reset();
         }
 
         [TestMethod]
@@ -57,25 +52,13 @@ namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
         }
 
         [TestMethod]
-        public void BuildTest_VersionRequest()
+        public void BuildTest_EmptyInput()
         {
             var textBuilder = mockContainer.GetExportedValue<ITextBuilder>();
 
-            mockProgramInfo.SetupGet(info => info.Copyright).Returns("Copyright");
-            mockProgramInfo.SetupGet(info => info.Product).Returns("Product");
-            var mockVersionInfo = MockVersionInfo();
-
-            var parseResult = new ParseFailedResult(new List<Error>() { new VersionRequestError() });
+            var parseResult = new ParseFailedResult(new List<Error>() { new EmptyInputError() });
             var output = textBuilder.Build(parseResult);
-            Assert.AreEqual("TestData", output);
-
-            mockVersionInfo.Verify(mock => mock.Format(
-                It.Is<string>(p => p == "Title"),
-                It.Is<string>(p => p == "Version"),
-                It.Is<string>(p => p == "Copyright"),
-                It.Is<string>(p => p == "Product"),
-                It.Is<int>(p => p == 80)
-            ), Times.Once);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(output));
         }
 
         [TestMethod]
@@ -83,63 +66,22 @@ namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
         {
             var textBuilder = mockContainer.GetExportedValue<ITextBuilder>();
 
-            var mockApplicationHeader = MockApplicationHeader();
-            var mockErrorHeader = MockErrorHeader();
-            var mockDuplicateProperty = MockDuplicateProperty();
-
             var parseResult = new ParseFailedResult(new List<Error>() { new DuplicatePropertyError("help") });
             var output = textBuilder.Build(parseResult);
-            Assert.AreEqual($"TestData{Environment.NewLine}TestData{Environment.NewLine}TestData{Environment.NewLine}", output);
-
-            mockApplicationHeader.Verify(mock => mock.Format(
-                It.Is<string>(p => p == "Title"),
-                It.Is<string>(p => p == "Version"),
-                It.Is<int>(p => p == 80)
-            ), Times.Once);
-            mockErrorHeader.Verify(mock => mock.Format(
-                It.Is<int>(p => p == 80)
-            ), Times.Once);
-            mockDuplicateProperty.Verify(mock => mock.Format(
-                It.Is<string>(p => p == "help"),
-                It.Is<int>(p => p == 80)
-            ), Times.Once);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(output));
         }
 
-
-        private Mock<VersionInfo> MockVersionInfo()
+        [TestMethod]
+        public void BuildTest_VersionRequest()
         {
-            var mockVersionInfo = new Mock<VersionInfo>();
-            mockOutputFormat.Setup(outputFormat => outputFormat.VERSION_INFO).Returns(mockVersionInfo.Object);
-            mockVersionInfo.Setup(versionInfo => versionInfo.Format(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<int>()))
-                           .Returns("TestData");
-            return mockVersionInfo;
-        }
+            var textBuilder = mockContainer.GetExportedValue<ITextBuilder>();
 
-        private Mock<ApplicationHeader> MockApplicationHeader()
-        {
-            var mockApplicationHeader = new Mock<ApplicationHeader>();
-            mockOutputFormat.Setup(outputFormat => outputFormat.APPLICATION_HEADER).Returns(mockApplicationHeader.Object);
-            mockApplicationHeader.Setup(applicationHeader => applicationHeader.Format(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<int>()))
-                                 .Returns("TestData");
-            return mockApplicationHeader;
-        }
+            mockProgramInfo.SetupGet(info => info.Copyright).Returns("Copyright");
+            mockProgramInfo.SetupGet(info => info.Product).Returns("Product");
 
-        private Mock<ErrorHeader> MockErrorHeader()
-        {
-            var mockErrorHeader = new Mock<ErrorHeader>();
-            mockOutputFormat.Setup(outputFormat => outputFormat.ERROR_HEADER).Returns(mockErrorHeader.Object);
-            mockErrorHeader.Setup(errorHeader => errorHeader.Format(It.IsAny<int>()))
-                                 .Returns("TestData");
-            return mockErrorHeader;
-        }
-
-        private Mock<DuplicateProperty> MockDuplicateProperty()
-        {
-            var mockDuplicateProperty = new Mock<DuplicateProperty>();
-            mockOutputFormat.Setup(outputFormat => outputFormat.DUPLICATE_PROPERTY).Returns(mockDuplicateProperty.Object);
-            mockDuplicateProperty.Setup(duplicateProperty => duplicateProperty.Format(It.IsAny<string>(), It.IsAny<int>()))
-                                 .Returns("TestData");
-            return mockDuplicateProperty;
+            var parseResult = new ParseFailedResult(new List<Error>() { new VersionRequestError() });
+            var output = textBuilder.Build(parseResult);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(output));
         }
     }
 }
