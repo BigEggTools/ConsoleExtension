@@ -5,6 +5,8 @@
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
+    using System.Collections.Generic;
+    using System;
 
     [Export(typeof(IProcessor))]
     internal class TypeCheckProcessor : IProcessor
@@ -18,10 +20,26 @@
 
         public void Process(ProcessorContext context)
         {
-            var invalidCommandType = context.Types.FirstOrDefault(type => type.GetCommand() == null);
-            if (invalidCommandType != null)
+            var commandNames = new Dictionary<string, Type>();
+            foreach (var type in context.Types)
             {
-                context.Errors.Add(new InvalidCommandError(invalidCommandType.FullName));
+                var commandAttribute = type.GetCommand();
+                if (commandAttribute == null)
+                {
+                    context.Errors.Add(new InvalidCommandError(type.FullName));
+                }
+                else
+                {
+                    var commandName = commandAttribute.Name.ToUpper();
+                    if (commandNames.ContainsKey(commandName))
+                    {
+                        context.Errors.Add(new DuplicateCommandError(commandName, commandNames[commandName].FullName, type.FullName));
+                    }
+                    else
+                    {
+                        commandNames.Add(commandName, type);
+                    }
+                }
             }
         }
     }

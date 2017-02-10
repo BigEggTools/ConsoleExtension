@@ -34,8 +34,12 @@
         /// </summary>
         MissingCommand,
         /// <summary>
-        /// Developer used invalid command
+        /// Developer used a type as command which don't have command attribute
         /// </summary>
-        InvalidCommand
+        InvalidCommand,
+        /// <summary>
+        /// Developer mark 2 command as same name
+        /// </summary>
+        DuplicateCommand
     }
 }
