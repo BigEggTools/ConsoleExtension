@@ -22,7 +22,7 @@
         public void Process(ProcessorContext context)
         {
             if (!CanProcess(context)) { throw new InvalidOperationException(); }
-            var commandName = context.CommandType.GetCommand().Name;
+            var commandName = context.CommandType.GetCommandAttributes().Name;
 
             context.Errors.Add(new CommandHelpRequestError(
                 commandName,

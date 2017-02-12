@@ -1,12 +1,12 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Logicals
 {
+    using System;
     using System.Linq;
+    using System.Collections.Generic;
     using System.ComponentModel.Composition;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
-    using System.Collections.Generic;
-    using System;
 
     [Export(typeof(IProcessor))]
     internal class TypeCheckProcessor : IProcessor
@@ -23,7 +23,7 @@
             var commandNames = new Dictionary<string, Type>();
             foreach (var type in context.Types)
             {
-                var commandAttribute = type.GetCommand();
+                var commandAttribute = type.GetCommandAttributes();
                 if (commandAttribute == null)
                 {
                     context.Errors.Add(new InvalidCommandError(type.FullName));

@@ -97,7 +97,7 @@
     <Compile Include="Parameters\Tokens\TokenType.cs" />
     <Compile Include="Parameters\Tokens\UnknownToken.cs" />
     <Compile Include="Parameters\Utils\IProgramInfo.cs" />
-    <Compile Include="Parameters\Utils\ReflectionExtionsion.cs" />
+    <Compile Include="Parameters\Utils\ReflectionExtionsions.cs" />
     <Compile Include="Parameters\Utils\StringExtensions.cs" />
     <Compile Include="Parameters\Utils\ProgramInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

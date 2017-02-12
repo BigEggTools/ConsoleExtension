@@ -37,7 +37,7 @@
             else
             {
                 var commandName = context.CaseSensitive ? commandToken.Value : commandToken.Value.ToUpper();
-                var existCommands = context.Types.Select(type => new { type.GetCommand().Name, Type = type })
+                var existCommands = context.Types.Select(type => new { type.GetCommandAttributes().Name, Type = type })
                                  .ToDictionary(c => context.CaseSensitive ? c.Name : c.Name.ToUpper(), c => c.Type);
                 if (existCommands.ContainsKey(commandName))
                 {
