@@ -1,9 +1,9 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Errors
 {
-    internal class DuplicateCommandError : Error
+    internal class DevelopDuplicateCommandError : Error
     {
-        public DuplicateCommandError(string commandName, string typeName1, string typeName2)
-            : base(ErrorType.DuplicateCommand, true)
+        public DevelopDuplicateCommandError(string commandName, string typeName1, string typeName2)
+            : base(ErrorType.Develop_DuplicateCommand, true)
         {
             CommandName = commandName;
             TypeName1 = typeName1;

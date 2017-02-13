@@ -5,14 +5,14 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
 
     [TestClass]
-    public class InvalidCommandErrorTest
+    public class DevelopMissingCommandErrorTest
     {
         [TestMethod]
         public void ConstructorTest()
         {
-            var error = new InvalidCommandError("GitPush");
-            Assert.AreEqual(ErrorType.InvalidCommand, error.ErrorType);
-            Assert.AreEqual("GitPush", error.TypeName);
+            var error = new DevelopMissingCommandError("GitClone");
+            Assert.AreEqual(ErrorType.Develop_MissingCommand, error.ErrorType);
+            Assert.AreEqual("GitClone", error.TypeName);
             Assert.IsTrue(error.StopProcessing);
         }
     }

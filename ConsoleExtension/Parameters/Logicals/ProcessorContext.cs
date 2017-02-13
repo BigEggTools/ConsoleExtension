@@ -8,7 +8,7 @@
 
     internal class ProcessorContext
     {
-        private readonly IList<Error> errors;
+        private readonly List<Error> errors;
 
         public ProcessorContext(IEnumerable<string> arguments, IEnumerable<Type> types, bool caseSensitive)
         {
@@ -27,7 +27,7 @@
         public bool CaseSensitive { get; private set; }
 
 
-        public IList<Error> Errors { get { return errors; } }
+        public List<Error> Errors { get { return errors; } }
 
         public IList<Token> Tokens { get; set; }
 

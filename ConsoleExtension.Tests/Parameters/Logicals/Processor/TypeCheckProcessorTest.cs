@@ -37,7 +37,7 @@
             var context = new ProcessorContext(new List<string>(), new List<Type>() { typeof(EmptyClass) }, false);
             processor.Process(context);
 
-            Assert.IsTrue(context.Errors.Any(error => error.ErrorType == ErrorType.InvalidCommand));
+            Assert.IsTrue(context.Errors.Any(error => error.ErrorType == ErrorType.Develop_MissingCommand));
         }
 
         [TestMethod]

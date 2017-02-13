@@ -1,9 +1,9 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Errors
 {
-    internal class InvalidCommandError : Error
+    internal class DevelopMissingCommandError : Error
     {
-        public InvalidCommandError(string typeName)
-            : base(ErrorType.InvalidCommand, true)
+        public DevelopMissingCommandError(string typeName)
+            : base(ErrorType.Develop_MissingCommand, true)
         {
             TypeName = typeName;
         }

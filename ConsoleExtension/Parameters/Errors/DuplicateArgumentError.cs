@@ -1,8 +1,8 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Errors
 {
-    internal class DuplicatePropertyError : Error
+    internal class DuplicateArgumentError : Error
     {
-        public DuplicatePropertyError(string propertyName)
+        public DuplicateArgumentError(string propertyName)
             : base(ErrorType.DuplicateProperty, true)
         {
             PropertyName = propertyName;

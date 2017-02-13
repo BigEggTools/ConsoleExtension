@@ -12,17 +12,8 @@
         /// <param name="longName">The name of the command.</param>
         /// <param name="shortName">The name of the command.</param>
         /// <param name="helpMessage">The help message of the command.</param>
-        /// <exception cref="ArgumentException">
-        /// Throw if <paramref name="longName"/> is null, empty or whitespace.
-        /// or
-        /// Throw if <paramref name="shortName"/> is null, empty or whitespace.
-        /// or
-        /// Throw if <paramref name="shortName"/>'s length larger than 4 characters.
-        /// or
-        /// Throw if <paramref name="helpMessage"/> is null, empty or whitespace
-        /// </exception>
         public StringPropertyAttribute(string longName, string shortName, string helpMessage)
-            : base(longName, shortName, helpMessage)
+            : base(PropertyAttributeType.String, longName, shortName, helpMessage)
         { }
 
         /// <summary>

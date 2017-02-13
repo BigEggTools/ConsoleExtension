@@ -27,7 +27,7 @@
                 var tokenName = token.Name.ToUpper();
                 if (names.Contains(tokenName))
                 {
-                    context.Errors.Add(new DuplicatePropertyError(tokenName));
+                    context.Errors.Add(new DuplicateArgumentError(tokenName));
                     return;
                 }
                 names.Add(tokenName);

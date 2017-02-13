@@ -66,7 +66,7 @@
         {
             var textBuilder = mockContainer.GetExportedValue<ITextBuilder>();
 
-            var parseResult = new ParseFailedResult(new List<Error>() { new DuplicatePropertyError("help") });
+            var parseResult = new ParseFailedResult(new List<Error>() { new DuplicateArgumentError("help") });
             var output = textBuilder.Build(parseResult);
             Assert.IsFalse(string.IsNullOrWhiteSpace(output));
         }

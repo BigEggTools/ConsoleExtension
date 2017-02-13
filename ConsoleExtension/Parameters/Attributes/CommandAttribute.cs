@@ -14,15 +14,8 @@
         /// </summary>
         /// <param name="name">The name of the command.</param>
         /// <param name="helpMessage">The help message of the command.</param>
-        /// <exception cref="ArgumentException">
-        /// Throw if <paramref name="name"/> is null, empty or whitespace.
-        /// or
-        /// Throw if <paramref name="helpMessage"/> is null, empty or whitespace
-        /// </exception>
         public CommandAttribute(string name, string helpMessage)
         {
-            if (string.IsNullOrWhiteSpace(name)) { throw new ArgumentException("name"); }
-            if (string.IsNullOrWhiteSpace(helpMessage)) { throw new ArgumentException("helpMessage"); }
 
             Name = name;
             HelpMessage = helpMessage;

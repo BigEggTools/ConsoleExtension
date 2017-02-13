@@ -59,14 +59,24 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Parameters\Attributes\CommandAttributeExtensionsTest.cs" />
+    <Compile Include="Parameters\Attributes\PropertyBaseAttributeExtensionsTest.cs" />
+    <Compile Include="Parameters\Attributes\StringPropertyAttributeTest.cs" />
+    <Compile Include="Parameters\Errors\DevelopDuplicatePropertyErrorTest.cs" />
+    <Compile Include="Parameters\Errors\DevelopDuplicateCommandErrorTest.cs" />
+    <Compile Include="Parameters\Errors\DevelopInvalidCommandErrorTest.cs" />
+    <Compile Include="Parameters\Errors\DevelopPropertyTypeMismatchErrorTest.cs" />
+    <Compile Include="Parameters\Errors\DevelopMissingCommandErrorTest.cs" />
+    <Compile Include="Parameters\Errors\DevelopInvalidPropertyErrorTest.cs" />
+    <Compile Include="Parameters\Errors\DevelopPropertyCannotWriteErrorTest.cs" />
     <Compile Include="Parameters\Errors\UnknownCommandErrorTest.cs" />
-    <Compile Include="Parameters\Errors\InvalidCommandErrorTest.cs" />
     <Compile Include="Parameters\Errors\EmptyInputErrorTest.cs" />
-    <Compile Include="Parameters\Errors\DuplicatePropertyErrorTest.cs" />
+    <Compile Include="Parameters\Errors\DuplicateArgumentErrorTest.cs" />
     <Compile Include="Parameters\Errors\CommandHelpRequestErrorTest.cs" />
     <Compile Include="Parameters\Errors\HelpRequestErrorTest.cs" />
     <Compile Include="Parameters\Errors\MissingCommandErrorTest.cs" />
     <Compile Include="Parameters\Errors\VersionRequestErrorTest.cs" />
+    <Compile Include="Parameters\FakeParameters\DummyGitClone.cs" />
     <Compile Include="Parameters\FakeParameters\GitPull.cs" />
     <Compile Include="Parameters\FakeParameters\GitClone.cs" />
     <Compile Include="Parameters\FakeParameters\EmptyClass.cs" />

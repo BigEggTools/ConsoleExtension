@@ -5,12 +5,12 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
 
     [TestClass]
-    public class DuplicatePropertyErrorTest
+    public class DuplicateArgumentErrorTest
     {
         [TestMethod]
         public void ConstructorTest()
         {
-            var error = new DuplicatePropertyError("help");
+            var error = new DuplicateArgumentError("help");
             Assert.AreEqual(ErrorType.DuplicateProperty, error.ErrorType);
             Assert.AreEqual("help", error.PropertyName);
             Assert.IsTrue(error.StopProcessing);

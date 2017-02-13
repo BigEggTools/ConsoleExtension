@@ -11,29 +11,19 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertyBaseAttribute" /> class.
         /// </summary>
+        /// <param name="propertyAttributeType">The type of property attribute.</param>
         /// <param name="longName">The name of the command.</param>
         /// <param name="shortName">The name of the command.</param>
         /// <param name="helpMessage">The help message of the command.</param>
-        /// <exception cref="ArgumentException">
-        /// Throw if <paramref name="longName"/> is null, empty or whitespace.
-        /// or
-        /// Throw if <paramref name="shortName"/> is null, empty or whitespace.
-        /// or
-        /// Throw if <paramref name="shortName"/>'s length larger than 4 characters.
-        /// or
-        /// Throw if <paramref name="helpMessage"/> is null, empty or whitespace
-        /// </exception>
-        public PropertyBaseAttribute(string longName, string shortName, string helpMessage)
+        internal PropertyBaseAttribute(PropertyAttributeType propertyAttributeType, string longName, string shortName, string helpMessage)
         {
-            if (string.IsNullOrWhiteSpace(longName)) { throw new ArgumentException("longName"); }
-            if (string.IsNullOrWhiteSpace(shortName)) { throw new ArgumentException("shortName"); }
-            if (shortName.Length > 4) { throw new ArgumentException("shortName"); }
-            if (string.IsNullOrWhiteSpace(helpMessage)) { throw new ArgumentException("helpMessage"); }
-
+            PropertyAttributeType = propertyAttributeType;
             LongName = longName;
             ShortName = shortName;
             HelpMessage = helpMessage;
         }
+
+        internal PropertyAttributeType PropertyAttributeType { get; set; }
 
         /// <summary>
         /// Gets the name of the command.

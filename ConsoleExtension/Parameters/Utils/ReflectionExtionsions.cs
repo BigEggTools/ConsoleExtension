@@ -17,14 +17,17 @@
                 : (CommandAttribute)attribute;
         }
 
-        public static IList<PropertyBaseAttribute> GetPropertyAttributes(this Type type)
+        public static IDictionary<PropertyBaseAttribute, PropertyInfo> GetPropertyAttributes(this Type type)
         {
             return type.GetProperties()
-                       .Select(property => property.GetCustomAttributes(typeof(PropertyBaseAttribute), true)
-                                                   .FirstOrDefault())
-                       .Where(attribute => attribute != null)
-                       .Select(attribute => attribute as PropertyBaseAttribute)
-                       .ToList();
+                       .Select(property => new
+                       {
+                           Attribute = property.GetCustomAttributes(typeof(PropertyBaseAttribute), true)
+                                               .FirstOrDefault() as PropertyBaseAttribute,
+                           Property = property
+                       })
+                       .Where(pair => pair.Attribute != null)
+                       .ToDictionary(pair => pair.Attribute, pair => pair.Property);
         }
     }
 }
