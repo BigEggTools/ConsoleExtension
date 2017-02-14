@@ -20,7 +20,7 @@
         /// <summary>
         /// User input duplicate property
         /// </summary>
-        DuplicateProperty,
+        DuplicateArgument,
         /// <summary>
         /// User input nothing
         /// </summary>

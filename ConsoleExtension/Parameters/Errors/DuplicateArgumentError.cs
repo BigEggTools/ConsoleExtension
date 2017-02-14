@@ -3,7 +3,7 @@
     internal class DuplicateArgumentError : Error
     {
         public DuplicateArgumentError(string propertyName)
-            : base(ErrorType.DuplicateProperty, true)
+            : base(ErrorType.DuplicateArgument, true)
         {
             PropertyName = propertyName;
         }

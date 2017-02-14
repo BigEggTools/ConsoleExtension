@@ -11,7 +11,7 @@
         public void ConstructorTest()
         {
             var error = new DuplicateArgumentError("help");
-            Assert.AreEqual(ErrorType.DuplicateProperty, error.ErrorType);
+            Assert.AreEqual(ErrorType.DuplicateArgument, error.ErrorType);
             Assert.AreEqual("help", error.PropertyName);
             Assert.IsTrue(error.StopProcessing);
         }

@@ -79,7 +79,7 @@
 
             processor.Process(context);
 
-            Assert.IsTrue(context.Errors.Any(error => error.ErrorType == ErrorType.DuplicateProperty));
+            Assert.IsTrue(context.Errors.Any(error => error.ErrorType == ErrorType.DuplicateArgument));
         }
 
         [TestMethod]
