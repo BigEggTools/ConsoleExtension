@@ -1,5 +1,6 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Output
 {
+    using System;
     using System.Collections.Generic;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
@@ -8,43 +9,43 @@
     {
         private string BuildInvalidTypesText(IEnumerable<Error> errors, int maximumDisplayWidth)
         {
-            var errorMessages = new List<string>()
-            {
-                ApplicationHeaderText,
-                ErrorHeaderText(errors),
-            };
-
+            var invalidMessage = new List<string>();
             foreach (var error in errors)
             {
                 switch (error.ErrorType)
                 {
                     case ErrorType.Develop_DuplicateCommand:
-                        errorMessages.Add(BuildDevelopDuplicateCommandText(error));
+                        invalidMessage.Add(BuildDevelopDuplicateCommandText(error));
                         break;
                     case ErrorType.Develop_DuplicateProperty:
-                        errorMessages.Add(BuildDevelopDuplicatePropertyText(error));
+                        invalidMessage.Add(BuildDevelopDuplicatePropertyText(error));
                         break;
                     case ErrorType.Develop_InvalidCommand:
-                        errorMessages.Add(BuildDevelopInvalidCommandText(error));
+                        invalidMessage.Add(BuildDevelopInvalidCommandText(error));
                         break;
                     case ErrorType.Develop_InvalidProperty:
-                        errorMessages.Add(BuildDevelopInvalidPropertyText(error));
+                        invalidMessage.Add(BuildDevelopInvalidPropertyText(error));
                         break;
                     case ErrorType.Develop_MissingCommand:
-                        errorMessages.Add(BuildDevelopMissingCommandText(error));
+                        invalidMessage.Add(BuildDevelopMissingCommandText(error));
                         break;
                     case ErrorType.Develop_PropertyTypeCannotWrite:
-                        errorMessages.Add(BuildDevelopPropertyTypeCannotWriteText(error));
+                        invalidMessage.Add(BuildDevelopPropertyTypeCannotWriteText(error));
                         break;
                     case ErrorType.Develop_PropertyTypeMismatch:
-                        errorMessages.Add(BuildDevelopPropertyTypeMismatchText(error));
+                        invalidMessage.Add(BuildDevelopPropertyTypeMismatchText(error));
                         break;
                     default:
                         break;
                 }
             }
 
-            return BuildString(errorMessages, maximumDisplayWidth);
+            return BuildString(new List<string>()
+            {
+                ApplicationHeaderText,
+                ErrorHeaderText(errors),
+                string.Join(Environment.NewLine, invalidMessage)
+            }, maximumDisplayWidth);
         }
 
         private string BuildDevelopDuplicateCommandText(Error error)

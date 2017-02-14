@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
-    using System.Runtime.InteropServices;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;

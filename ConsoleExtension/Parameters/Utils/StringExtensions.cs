@@ -24,41 +24,31 @@
         private static string ConcatWithWidth(string format, int maximumDisplayWidth)
         {
             var result = format;
+            maximumDisplayWidth = maximumDisplayWidth - 1;
 
             var index = result.IndexOf(ParameterConstants.INDEX_START_STRING);
-            result = result.Replace(ParameterConstants.INDEX_START_STRING, "");
+            if (index == -1) { return result; }
 
+            var valueLenght = (maximumDisplayWidth - index);
+            if (valueLenght <= 0) { throw new FormatException(); }
+
+            result = result.Replace(ParameterConstants.INDEX_START_STRING, "");
             var stringBuilder = new StringBuilder();
-            if (index == -1)
+
+            for (int i = 0; i <= (result.Length - index) / valueLenght; i++)
             {
-                for (int i = 0; i <= result.Length / maximumDisplayWidth; i++)
+                if (i == 0)
                 {
                     stringBuilder.AppendLine(
-                        result.Substring(
-                            i * maximumDisplayWidth,
-                            Math.Min(result.Length - i * maximumDisplayWidth, maximumDisplayWidth)));
+                        result.Substring(0, Math.Min(result.Length, valueLenght + index)));
                 }
-            }
-            else
-            {
-                var valueLenght = (maximumDisplayWidth - index);
-                if (valueLenght <= 0) { throw new FormatException(); }
-
-                for (int i = 0; i <= (result.Length - index) / valueLenght; i++)
+                else
                 {
-                    if (i == 0)
-                    {
-                        stringBuilder.AppendLine(
-                            result.Substring(0, Math.Min(result.Length, valueLenght + index)));
-                    }
-                    else
-                    {
-                        stringBuilder.Append(' ', index);
-                        stringBuilder.AppendLine(
-                             result.Substring(
-                                index + i * valueLenght,
-                                Math.Min(result.Length - index - i * valueLenght, valueLenght)));
-                    }
+                    stringBuilder.Append(' ', index);
+                    stringBuilder.AppendLine(
+                         result.Substring(
+                            index + i * valueLenght,
+                            Math.Min(result.Length - index - i * valueLenght, valueLenght)));
                 }
             }
 
