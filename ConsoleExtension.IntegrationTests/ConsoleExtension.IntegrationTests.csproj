@@ -37,6 +37,10 @@
     <Reference Include="System.ComponentModel.Composition" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Parameters\Params\InvalidCommandParam.cs" />
+    <Compile Include="Parameters\Params\EmptyClass.cs" />
+    <Compile Include="Parameters\Params\InvalidPropertyParam.cs" />
+    <Compile Include="Parameters\Params\GitPull.cs" />
     <Compile Include="Parameters\Program.cs" />
     <Compile Include="Parameters\Params\GitClone.cs" />
     <Compile Include="ProgramBase.cs" />

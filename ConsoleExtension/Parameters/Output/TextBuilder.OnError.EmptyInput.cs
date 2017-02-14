@@ -9,8 +9,6 @@
     {
         private string BuildEmptyInputText(IEnumerable<Error> errors, int maximumDisplayWidth)
         {
-            var error = errors.First(e => e.ErrorType == ErrorType.EmptyInput) as EmptyInputError;
-
             return BuildString(new List<string>()
             {
                 ApplicationHeaderText,

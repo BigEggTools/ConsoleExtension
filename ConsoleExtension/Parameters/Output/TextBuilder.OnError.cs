@@ -13,9 +13,15 @@
         private void InitErrorHandle()
         {
             errorHandle.Add(ErrorType.EmptyInput, BuildEmptyInputText);
+            errorHandle.Add(ErrorType.Develop_DuplicateCommand, BuildInvalidTypesText);
+            errorHandle.Add(ErrorType.Develop_DuplicateProperty, BuildInvalidTypesText);
+            errorHandle.Add(ErrorType.Develop_InvalidCommand, BuildInvalidTypesText);
+            errorHandle.Add(ErrorType.Develop_InvalidProperty, BuildInvalidTypesText);
+            errorHandle.Add(ErrorType.Develop_MissingCommand, BuildInvalidTypesText);
+            errorHandle.Add(ErrorType.Develop_PropertyTypeCannotWrite, BuildInvalidTypesText);
+            errorHandle.Add(ErrorType.Develop_PropertyTypeMismatch, BuildInvalidTypesText);
+            errorHandle.Add(ErrorType.DuplicateArgument, BuildDuplicatePropertyText);
 
-
-            errorHandle.Add(ErrorType.DuplicateProperty, BuildDuplicatePropertyText);
             errorHandle.Add(ErrorType.VersionRequest, BuildVersionText);
         }
 

@@ -48,31 +48,34 @@
 
         private void ValidatePropertyAttributes(Type type, ProcessorContext context)
         {
-            var names = new Dictionary<string, _PropertyInfo>();
+            var names = new Dictionary<string, string>();
             var pairs = type.GetPropertyAttributes();
             foreach (var pair in pairs)
             {
-                var errors = pair.Key.Validate(type.FullName, pair.Value);
+                var attribute = pair.Item1;
+                var propertyInfo = pair.Item2;
+
+                var errors = attribute.Validate(type.FullName, propertyInfo);
                 if (errors.Any())
                 {
                     context.Errors.AddRange(errors);
                     continue;
                 }
 
-                var shortName = context.CaseSensitive ? pair.Key.ShortName.ToUpper() : pair.Key.ShortName;
-                var longName = context.CaseSensitive ? pair.Key.LongName.ToUpper() : pair.Key.LongName;
+                var shortName = context.CaseSensitive ? attribute.ShortName.ToUpper() : attribute.ShortName;
+                var longName = context.CaseSensitive ? attribute.LongName.ToUpper() : attribute.LongName;
                 if (names.ContainsKey(shortName))
                 {
-                    context.Errors.Add(new DevelopDuplicatePropertyError(type.FullName, shortName, names[shortName].Name, pair.Value.Name));
+                    context.Errors.Add(new DevelopDuplicatePropertyError(type.FullName, shortName, names[shortName], propertyInfo.Name));
                 }
                 else if (names.ContainsKey(longName))
                 {
-                    context.Errors.Add(new DevelopDuplicatePropertyError(type.FullName, longName, names[longName].Name, pair.Value.Name));
+                    context.Errors.Add(new DevelopDuplicatePropertyError(type.FullName, longName, names[longName], propertyInfo.Name));
                 }
                 else
                 {
-                    names.Add(shortName, pair.Value);
-                    names.Add(longName, pair.Value);
+                    names.Add(shortName, propertyInfo.Name);
+                    names.Add(longName, propertyInfo.Name);
                 }
             }
         }

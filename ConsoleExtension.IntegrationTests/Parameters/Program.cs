@@ -16,6 +16,7 @@
             RunTest("Empty Input", "", typeof(GitClone));
             RunTest("Duplicate Property", "--help --help", typeof(GitClone));
             RunTest("Version Request", "--version", typeof(GitClone));
+            RunTest("TypeCheck Request", "--clone", typeof(GitClone), typeof(EmptyClass), typeof(InvalidCommandParam), typeof(InvalidPropertyParam));
 
             Console.WriteLine("All test complete.");
             Console.ReadKey();

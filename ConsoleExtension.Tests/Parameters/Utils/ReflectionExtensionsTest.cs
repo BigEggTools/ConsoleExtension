@@ -41,13 +41,13 @@
             Assert.IsNotNull(propertyAttributes);
             Assert.AreEqual(1, propertyAttributes.Count);
 
-            var repositoryPropertyAttribute = propertyAttributes.First().Key;
+            var repositoryPropertyAttribute = propertyAttributes.First().Item1;
             Assert.AreEqual("repository", repositoryPropertyAttribute.LongName);
             Assert.AreEqual("rep", repositoryPropertyAttribute.ShortName);
             Assert.IsFalse(string.IsNullOrWhiteSpace(repositoryPropertyAttribute.HelpMessage));
             Assert.IsTrue(repositoryPropertyAttribute.Required);
 
-            var repositoryProperty = propertyAttributes.First().Value;
+            var repositoryProperty = propertyAttributes.First().Item2;
             Assert.AreEqual("Repository", repositoryProperty.Name);
             Assert.AreEqual(typeof(string), repositoryProperty.PropertyType);
         }
@@ -59,13 +59,13 @@
             Assert.IsNotNull(propertyAttributes);
             Assert.AreEqual(1, propertyAttributes.Count);
 
-            var repositoryPropertyAttribute = propertyAttributes.First().Key;
+            var repositoryPropertyAttribute = propertyAttributes.First().Item1;
             Assert.AreEqual("repository", repositoryPropertyAttribute.LongName);
             Assert.AreEqual("rep", repositoryPropertyAttribute.ShortName);
             Assert.IsFalse(string.IsNullOrWhiteSpace(repositoryPropertyAttribute.HelpMessage));
             Assert.IsTrue(repositoryPropertyAttribute.Required);
 
-            var repositoryProperty = propertyAttributes.First().Value;
+            var repositoryProperty = propertyAttributes.First().Item2;
             Assert.AreEqual("Repository", repositoryProperty.Name);
             Assert.AreEqual(typeof(string), repositoryProperty.PropertyType);
         }
