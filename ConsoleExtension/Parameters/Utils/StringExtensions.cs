@@ -9,7 +9,7 @@
     {
         public static string FormatWithIndex(this string formatString, int maximumDisplayWidth)
         {
-            return FormatWithIndex(new string[] { formatString }, maximumDisplayWidth);
+            return FormatWithIndex(formatString.Split(new string[] { Environment.NewLine }, StringSplitOptions.None), maximumDisplayWidth);
         }
 
         public static string FormatWithIndex(this string[] formatStrings, int maximumDisplayWidth)
