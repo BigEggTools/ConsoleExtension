@@ -21,8 +21,8 @@
             errorHandle.Add(ErrorType.Develop_PropertyTypeCannotWrite, BuildInvalidTypesText);
             errorHandle.Add(ErrorType.Develop_PropertyTypeMismatch, BuildInvalidTypesText);
             errorHandle.Add(ErrorType.DuplicateArgument, BuildDuplicatePropertyText);
-
             errorHandle.Add(ErrorType.VersionRequest, BuildVersionText);
+            errorHandle.Add(ErrorType.HelpRequest, BuildHelpRequestText);
         }
 
         private string OnError(IEnumerable<Error> errors, int maximumDisplayWidth)

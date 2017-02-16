@@ -4,8 +4,9 @@
     using System.ComponentModel.Composition;
     using System.Linq;
 
-    using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
 
     [Export(typeof(IProcessor))]
     internal class HelpProcessor : IProcessor
@@ -23,7 +24,8 @@
         {
             if (!CanProcess(context)) { throw new InvalidOperationException(); }
 
-            context.Errors.Add(new HelpRequestError());
+            var commandAttributes = context.Types.Select(type => type.GetCommandAttributes());
+            context.Errors.Add(new HelpRequestError(commandAttributes));
         }
     }
 }

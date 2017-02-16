@@ -3,6 +3,7 @@
     using System;
 
     using BigEgg.Tools.ConsoleExtension.Parameters;
+
     using BigEgg.Tools.ConsoleExtension.IntegrationTests.Parameters.Params;
 
     public partial class Program : ProgramBase
@@ -17,6 +18,7 @@
             RunTest("Duplicate Property", "--help --help", typeof(GitClone));
             RunTest("Version Request", "--version", typeof(GitClone));
             RunTest("TypeCheck Request", "--clone", typeof(GitClone), typeof(EmptyClass), typeof(InvalidCommandParam), typeof(InvalidPropertyParam));
+            RunTest("Help Request", "--help", typeof(GitClone), typeof(GitPull));
 
             Console.WriteLine("All test complete.");
             Console.ReadKey();

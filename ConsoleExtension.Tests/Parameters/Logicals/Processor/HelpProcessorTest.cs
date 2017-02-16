@@ -8,6 +8,7 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
     using BigEgg.Tools.ConsoleExtension.Parameters.Logicals;
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
+
     using BigEgg.Tools.ConsoleExtension.Tests.Parameters.FakeParameters;
 
     [TestClass]
@@ -88,7 +89,9 @@
 
             processor.Process(context);
 
-            Assert.IsTrue(context.Errors.Any(error => error.ErrorType == ErrorType.HelpRequest));
+            var helpRequestError = context.Errors.FirstOrDefault(error => error.ErrorType == ErrorType.HelpRequest) as HelpRequestError;
+            Assert.IsNotNull(helpRequestError);
+            Assert.AreEqual(1, helpRequestError.CommandAttributes.Count());
         }
     }
 }

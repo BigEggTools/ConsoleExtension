@@ -1,7 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
+﻿namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.ComponentModel.Composition.Hosting;
@@ -13,6 +11,7 @@ namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
     using BigEgg.Tools.ConsoleExtension.Parameters.Output;
     using BigEgg.Tools.ConsoleExtension.Parameters.Results;
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
+    using BigEgg.Tools.ConsoleExtension.Parameters;
 
     [TestClass]
     public class TextBuilderTest : TestClassBase
@@ -167,6 +166,23 @@ namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Output
             var textBuilder = mockContainer.GetExportedValue<ITextBuilder>();
 
             var parseResult = new ParseFailedResult(new List<Error>() { new DevelopPropertyTypeMismatchError("GitClone", "Repository", "Boolean", new List<string>() { "String" }) });
+            var output = textBuilder.Build(parseResult);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(output));
+        }
+
+        [TestMethod]
+        public void BuildTest_HelpRequest()
+        {
+            var textBuilder = mockContainer.GetExportedValue<ITextBuilder>();
+
+            var parseResult = new ParseFailedResult(
+                new List<Error>()
+                {
+                    new HelpRequestError(new List<CommandAttribute>()
+                    {
+                        new CommandAttribute("Clone", "Clone a repository into a new directory")
+                    })
+                });
             var output = textBuilder.Build(parseResult);
             Assert.IsFalse(string.IsNullOrWhiteSpace(output));
         }

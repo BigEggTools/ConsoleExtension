@@ -20,6 +20,13 @@
             }).Join();
         }
 
+        public static string FillWithCharacter(this string message, int totalLength, char character)
+        {
+            if (message.Length >= totalLength) { return message; }
+
+            return message + new string(character, totalLength - message.Length);
+        }
+
 
         private static string ConcatWithWidth(string format, int maximumDisplayWidth)
         {
