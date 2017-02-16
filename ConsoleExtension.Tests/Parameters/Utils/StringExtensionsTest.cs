@@ -18,11 +18,11 @@
         }
 
         [TestMethod]
-        public void FormatWithIndex_NoIndex_Wrap()
+        public void FormatWithIndex_NoIndex_ShouldNotWrap()
         {
             var text = "Program name: ConsoleExtension".FormatWithIndex(25);
 
-            Assert.AreEqual($"Program name: ConsoleExte{Environment.NewLine}nsion{Environment.NewLine}", text);
+            Assert.AreEqual($"Program name: ConsoleExtension{Environment.NewLine}", text);
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@
         {
             var text = $"Program name: {ParameterConstants.INDEX_START_STRING}ConsoleExtension".FormatWithIndex(25);
 
-            Assert.AreEqual($"Program name: ConsoleExte{Environment.NewLine}{new string(' ', 14)}nsion{Environment.NewLine}", text);
+            Assert.AreEqual($"Program name: ConsoleExt{Environment.NewLine}{new string(' ', 14)}ension{Environment.NewLine}", text);
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@
                 $"Program Copyright: {ParameterConstants.INDEX_START_STRING}Copyright c BigEgg 2017"
             }.FormatWithIndex(25);
 
-            Assert.AreEqual($"Program Version Informati{Environment.NewLine}on:{Environment.NewLine}Program Name: ConsoleExte{Environment.NewLine}{new string(' ', 14)}nsion{Environment.NewLine}Program Version: 1.0.0{Environment.NewLine}Program Product: BigEgg.T{Environment.NewLine}{new string(' ', 17)}ools{Environment.NewLine}Program Copyright: Copyri{Environment.NewLine}{new string(' ', 19)}ght c {Environment.NewLine}{new string(' ', 19)}BigEgg{Environment.NewLine}{new string(' ', 19)} 2017{Environment.NewLine}", text);
+            Assert.AreEqual($"Program Version Information:{Environment.NewLine}Program Name: ConsoleExt{Environment.NewLine}{new string(' ', 14)}ension{Environment.NewLine}Program Version: 1.0.0{Environment.NewLine}Program Product: BigEgg.{Environment.NewLine}{new string(' ', 17)}Tools{Environment.NewLine}Program Copyright: Copyr{Environment.NewLine}{new string(' ', 19)}ight {Environment.NewLine}{new string(' ', 19)}c Big{Environment.NewLine}{new string(' ', 19)}Egg 2{Environment.NewLine}{new string(' ', 19)}017{Environment.NewLine}", text);
         }
     }
 }
