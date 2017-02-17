@@ -43,7 +43,7 @@
     <Compile Include="Parameters\Params\GitPull.cs" />
     <Compile Include="Parameters\Program.cs" />
     <Compile Include="Parameters\Params\GitClone.cs" />
-    <Compile Include="ProgramBase.cs" />
+    <Compile Include="ProgressBar\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

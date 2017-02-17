@@ -23,11 +23,25 @@
             RunTest("Unknown Command", "error --repository http://abc.com", typeof(GitClone), typeof(GitPull));
             RunTest("Command Help Request", "clone --help", typeof(GitClone), typeof(GitPull));
 
-            Console.WriteLine("All test complete.");
+            Console.WriteLine("All tests complete.");
             Console.ReadKey();
             Console.WriteLine("Bye.");
         }
 
+
+        private static void Initialize()
+        {
+            catalog = new AggregateCatalog();
+            // Add the Framework assembly to the catalog
+            catalog.Catalogs.Add(new AssemblyCatalog(typeof(Parser).Assembly));
+            // Add the Bugger.Presentation assembly to the catalog
+            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
+
+            container = new CompositionContainer(catalog);
+            CompositionBatch batch = new CompositionBatch();
+            batch.AddExportedValue(container);
+            container.Compose(batch);
+        }
 
         private static void RunTest(string header, string arguments, params Type[] types)
         {
