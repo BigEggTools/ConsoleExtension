@@ -39,7 +39,7 @@
         {
             var propertyAttributes = typeof(GitClone).GetPropertyAttributes();
             Assert.IsNotNull(propertyAttributes);
-            Assert.AreEqual(1, propertyAttributes.Count);
+            Assert.AreEqual(2, propertyAttributes.Count);
 
             var repositoryPropertyAttribute = propertyAttributes.First().Item1;
             Assert.AreEqual("repository", repositoryPropertyAttribute.LongName);

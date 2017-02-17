@@ -65,10 +65,10 @@
                 $"Program Name: {ParameterConstants.INDEX_START_STRING}ConsoleExtension",
                 $"Program Version: {ParameterConstants.INDEX_START_STRING}1.0.0",
                 $"Program Product: {ParameterConstants.INDEX_START_STRING}BigEgg.Tools",
-                $"Program Copyright: {ParameterConstants.INDEX_START_STRING}Copyright c BigEgg 2017"
+                $"Program Copyright: {ParameterConstants.INDEX_START_STRING}Copyright c 2017 BigEgg"
             }.FormatWithIndex(80);
 
-            Assert.AreEqual($"Program Version Information:{Environment.NewLine}Program Name: ConsoleExtension{Environment.NewLine}Program Version: 1.0.0{Environment.NewLine}Program Product: BigEgg.Tools{Environment.NewLine}Program Copyright: Copyright c BigEgg 2017{Environment.NewLine}", text);
+            Assert.AreEqual($"Program Version Information:{Environment.NewLine}Program Name: ConsoleExtension{Environment.NewLine}Program Version: 1.0.0{Environment.NewLine}Program Product: BigEgg.Tools{Environment.NewLine}Program Copyright: Copyright c 2017 BigEgg{Environment.NewLine}", text);
         }
 
         [TestMethod]
@@ -80,10 +80,10 @@
                 $"Program Name: {ParameterConstants.INDEX_START_STRING}ConsoleExtension",
                 $"Program Version: {ParameterConstants.INDEX_START_STRING}1.0.0",
                 $"Program Product: {ParameterConstants.INDEX_START_STRING}BigEgg.Tools",
-                $"Program Copyright: {ParameterConstants.INDEX_START_STRING}Copyright c BigEgg 2017"
+                $"Program Copyright: {ParameterConstants.INDEX_START_STRING}Copyright c 2017 BigEgg"
             }.FormatWithIndex(25);
 
-            Assert.AreEqual($"Program Version Information:{Environment.NewLine}Program Name: ConsoleExte{new string(' ', 14)}nsion{Environment.NewLine}Program Version: 1.0.0{Environment.NewLine}Program Product: BigEgg.T{new string(' ', 17)}ools{Environment.NewLine}Program Copyright: Copyri{new string(' ', 19)}ght c {new string(' ', 19)}BigEgg{new string(' ', 19)} 2017{Environment.NewLine}", text);
+            Assert.AreEqual($"Program Version Information:{Environment.NewLine}Program Name: ConsoleExte{new string(' ', 14)}nsion{Environment.NewLine}Program Version: 1.0.0{Environment.NewLine}Program Product: BigEgg.T{new string(' ', 17)}ools{Environment.NewLine}Program Copyright: Copyri{new string(' ', 19)}ght c {new string(' ', 19)}2017 B{new string(' ', 19)}igEgg{Environment.NewLine}", text);
         }
     }
 }
