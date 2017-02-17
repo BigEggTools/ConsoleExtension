@@ -53,7 +53,7 @@
         {
             var text = $"Program name: {ParameterConstants.INDEX_START_STRING}ConsoleExtension".FormatWithIndex(25);
 
-            Assert.AreEqual($"Program name: ConsoleExt{Environment.NewLine}{new string(' ', 14)}ension{Environment.NewLine}", text);
+            Assert.AreEqual($"Program name: ConsoleExte{new string(' ', 14)}nsion{Environment.NewLine}", text);
         }
 
         [TestMethod]
@@ -83,7 +83,7 @@
                 $"Program Copyright: {ParameterConstants.INDEX_START_STRING}Copyright c BigEgg 2017"
             }.FormatWithIndex(25);
 
-            Assert.AreEqual($"Program Version Information:{Environment.NewLine}Program Name: ConsoleExt{Environment.NewLine}{new string(' ', 14)}ension{Environment.NewLine}Program Version: 1.0.0{Environment.NewLine}Program Product: BigEgg.{Environment.NewLine}{new string(' ', 17)}Tools{Environment.NewLine}Program Copyright: Copyr{Environment.NewLine}{new string(' ', 19)}ight {Environment.NewLine}{new string(' ', 19)}c Big{Environment.NewLine}{new string(' ', 19)}Egg 2{Environment.NewLine}{new string(' ', 19)}017{Environment.NewLine}", text);
+            Assert.AreEqual($"Program Version Information:{Environment.NewLine}Program Name: ConsoleExte{new string(' ', 14)}nsion{Environment.NewLine}Program Version: 1.0.0{Environment.NewLine}Program Product: BigEgg.T{new string(' ', 17)}ools{Environment.NewLine}Program Copyright: Copyri{new string(' ', 19)}ght c {new string(' ', 19)}BigEgg{new string(' ', 19)} 2017{Environment.NewLine}", text);
         }
     }
 }

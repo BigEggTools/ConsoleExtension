@@ -31,7 +31,6 @@
         private static string ConcatWithWidth(string format, int maximumDisplayWidth)
         {
             var result = format;
-            maximumDisplayWidth = maximumDisplayWidth - 1;
 
             var index = result.IndexOf(ParameterConstants.INDEX_START_STRING);
             if (index == -1) { return result; }
@@ -41,18 +40,17 @@
 
             result = result.Replace(ParameterConstants.INDEX_START_STRING, "");
             var stringBuilder = new StringBuilder();
-
             for (int i = 0; i <= (result.Length - index) / valueLenght; i++)
             {
                 if (i == 0)
                 {
-                    stringBuilder.AppendLine(
+                    stringBuilder.Append(
                         result.Substring(0, Math.Min(result.Length, valueLenght + index)));
                 }
                 else
                 {
                     stringBuilder.Append(' ', index);
-                    stringBuilder.AppendLine(
+                    stringBuilder.Append(
                          result.Substring(
                             index + i * valueLenght,
                             Math.Min(result.Length - index - i * valueLenght, valueLenght)));

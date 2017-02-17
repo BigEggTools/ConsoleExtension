@@ -19,7 +19,7 @@
 
             int commandLenght = (int)(Math.Ceiling(helpRequestError.CommandAttributes.Max(attribute => attribute.Name.Length) / ParameterConstants.TAB_LENGTH) * ParameterConstants.TAB_LENGTH);
             var commandMessages = helpRequestError.CommandAttributes
-                                                  .Select(attribute => $"    {attribute.Name.FillWithCharacter(commandLenght, ' ')} | {ParameterConstants.INDEX_START_STRING} {attribute.HelpMessage}");
+                                                  .Select(attribute => $"    {attribute.Name.FillWithCharacter(commandLenght, ' ')} |  {ParameterConstants.INDEX_START_STRING}{attribute.HelpMessage}");
             return BuildString(new List<string>()
             {
                 ApplicationHeaderText,
