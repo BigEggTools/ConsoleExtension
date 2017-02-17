@@ -22,11 +22,13 @@
         public void Process(ProcessorContext context)
         {
             if (!CanProcess(context)) { throw new InvalidOperationException(); }
-            var commandName = context.CommandType.GetCommandAttributes().Name;
+
+            var commandAttribute = context.CommandType.GetCommandAttributes();
+            var propertyAttributes = context.CommandType.GetPropertyAttributes().Select(item => item.Item1);
 
             context.Errors.Add(new CommandHelpRequestError(
-                commandName,
-                context.CommandType
+                commandAttribute,
+                propertyAttributes
             ));
         }
     }

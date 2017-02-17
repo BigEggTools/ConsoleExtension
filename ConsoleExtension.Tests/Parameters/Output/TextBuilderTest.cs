@@ -220,5 +220,24 @@
             var output = textBuilder.Build(parseResult);
             Assert.IsFalse(string.IsNullOrWhiteSpace(output));
         }
+
+        [TestMethod]
+        public void BuildTest_CommandHelpRequest()
+        {
+            var textBuilder = mockContainer.GetExportedValue<ITextBuilder>();
+
+            var parseResult = new ParseFailedResult(
+                new List<Error>()
+                {
+                    new CommandHelpRequestError(
+                        new CommandAttribute("Clone", "Clone a repository into a new directory"),
+                        new List<PropertyBaseAttribute>()
+                        {
+                            new StringPropertyAttribute("repository", "rep", "The (possibly remote) repository to clone from. See the URLS section below for more information on specifying repositories.")
+                        })
+                });
+            var output = textBuilder.Build(parseResult);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(output));
+        }
     }
 }

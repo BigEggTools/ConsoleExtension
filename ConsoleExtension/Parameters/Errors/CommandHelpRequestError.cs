@@ -1,19 +1,23 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Errors
 {
     using System;
+    using System.Collections.Generic;
 
     internal class CommandHelpRequestError : Error
     {
-        public CommandHelpRequestError(string commandName, Type commandType)
+        public CommandHelpRequestError(CommandAttribute commandAttribute, IEnumerable<PropertyBaseAttribute> propertyAttributes)
             : base(ErrorType.CommandHelpRequest, true)
         {
-            CommandName = commandName;
-            CommandType = commandType;
+            if (commandAttribute == null) { throw new ArgumentException("commandAttribute"); }
+            if (propertyAttributes == null) { throw new ArgumentException("propertyAttributes"); }
+
+            CommandAttribute = commandAttribute;
+            PropertyAttributes = propertyAttributes;
         }
 
 
-        public string CommandName { get; private set; }
+        public CommandAttribute CommandAttribute { get; private set; }
 
-        public Type CommandType { get; private set; }
+        public IEnumerable<PropertyBaseAttribute> PropertyAttributes { get; private set; }
     }
 }
