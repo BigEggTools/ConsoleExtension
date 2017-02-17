@@ -17,7 +17,7 @@
                 ? "Application support these commands:"
                 : "Application support this command:";
 
-            int commandLenght = (int)Math.Ceiling(missingCommandError.CommandAttributes.Max(attribute => attribute.Name.Length) / 4.0) * 4;
+            int commandLenght = (int)(Math.Ceiling(missingCommandError.CommandAttributes.Max(attribute => attribute.Name.Length) / ParameterConstants.TAB_LENGTH) * ParameterConstants.TAB_LENGTH);
             var commandMessages = missingCommandError.CommandAttributes
                                                      .Select(attribute => $"    {attribute.Name.FillWithCharacter(commandLenght, ' ')} | {ParameterConstants.INDEX_START_STRING} {attribute.HelpMessage}");
             return BuildString(new List<string>()
@@ -39,7 +39,7 @@
                 ? "Application support these commands:"
                 : "Application support this command:";
 
-            int commandLenght = (int)Math.Ceiling(unknownCommandError.CommandAttributes.Max(attribute => attribute.Name.Length) / 4.0) * 4;
+            int commandLenght = (int)(Math.Ceiling(unknownCommandError.CommandAttributes.Max(attribute => attribute.Name.Length) / ParameterConstants.TAB_LENGTH) * ParameterConstants.TAB_LENGTH);
             var commandMessages = unknownCommandError.CommandAttributes
                                                      .Select(attribute => $"    {attribute.Name.FillWithCharacter(commandLenght, ' ')} | {ParameterConstants.INDEX_START_STRING} {attribute.HelpMessage}");
             return BuildString(new List<string>()
