@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleExtension.Tests", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleExtension.IntegrationTests", "ConsoleExtension.IntegrationTests\ConsoleExtension.IntegrationTests.csproj", "{8362572A-E183-4F37-99AF-BF69972460A0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{BBD38C42-BC38-4CB5-BF32-07AF23DB7299}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor-ci.yml = appveyor-ci.yml
+		appveyor-release.yml = appveyor-release.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
