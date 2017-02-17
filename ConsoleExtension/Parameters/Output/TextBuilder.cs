@@ -24,11 +24,13 @@
 
         public string Build(ParserResult result, int maximumDisplayWidth = Constants.DEFAULT_MAX_CONSOLE_LENGTH)
         {
-            if (result.ResultType == ParserResultType.ParseFailed)
+            switch (result.ResultType)
             {
-                return OnError(((ParseFailedResult)result).Errors, maximumDisplayWidth);
+                case ParserResultType.ParseFailed:
+                    return OnError(((ParseFailedResult)result).Errors, maximumDisplayWidth);
+                default:
+                    return string.Empty;
             }
-            return string.Empty;
         }
 
 

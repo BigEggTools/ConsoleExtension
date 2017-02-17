@@ -7,37 +7,26 @@
 
     internal partial class TextBuilder
     {
+        private IDictionary<ErrorType, Func<Error, string>> invalidTypeHandles = new Dictionary<ErrorType, Func<Error, string>>();
+
+        private void InitInvalidTypeHandles()
+        {
+            invalidTypeHandles.Add(ErrorType.Develop_DuplicateCommand, BuildDevelopDuplicateCommandText);
+            invalidTypeHandles.Add(ErrorType.Develop_DuplicateProperty, BuildDevelopDuplicatePropertyText);
+            invalidTypeHandles.Add(ErrorType.Develop_InvalidCommand, BuildDevelopInvalidCommandText);
+            invalidTypeHandles.Add(ErrorType.Develop_InvalidProperty, BuildDevelopInvalidPropertyText);
+            invalidTypeHandles.Add(ErrorType.Develop_MissingCommand, BuildDevelopMissingCommandText);
+            invalidTypeHandles.Add(ErrorType.Develop_PropertyTypeCannotWrite, BuildDevelopPropertyTypeCannotWriteText);
+            invalidTypeHandles.Add(ErrorType.Develop_PropertyTypeMismatch, BuildDevelopPropertyTypeMismatchText);
+        }
+
+
         private string BuildInvalidTypesText(IEnumerable<Error> errors, int maximumDisplayWidth)
         {
             var invalidMessage = new List<string>();
             foreach (var error in errors)
             {
-                switch (error.ErrorType)
-                {
-                    case ErrorType.Develop_DuplicateCommand:
-                        invalidMessage.Add(BuildDevelopDuplicateCommandText(error));
-                        break;
-                    case ErrorType.Develop_DuplicateProperty:
-                        invalidMessage.Add(BuildDevelopDuplicatePropertyText(error));
-                        break;
-                    case ErrorType.Develop_InvalidCommand:
-                        invalidMessage.Add(BuildDevelopInvalidCommandText(error));
-                        break;
-                    case ErrorType.Develop_InvalidProperty:
-                        invalidMessage.Add(BuildDevelopInvalidPropertyText(error));
-                        break;
-                    case ErrorType.Develop_MissingCommand:
-                        invalidMessage.Add(BuildDevelopMissingCommandText(error));
-                        break;
-                    case ErrorType.Develop_PropertyTypeCannotWrite:
-                        invalidMessage.Add(BuildDevelopPropertyTypeCannotWriteText(error));
-                        break;
-                    case ErrorType.Develop_PropertyTypeMismatch:
-                        invalidMessage.Add(BuildDevelopPropertyTypeMismatchText(error));
-                        break;
-                    default:
-                        break;
-                }
+                invalidMessage.Add(invalidTypeHandles[error.ErrorType](error));
             }
 
             return BuildString(new List<string>()

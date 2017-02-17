@@ -8,30 +8,32 @@
 
     internal partial class TextBuilder
     {
-        private IDictionary<ErrorType, Func<IEnumerable<Error>, int, string>> errorHandle = new Dictionary<ErrorType, Func<IEnumerable<Error>, int, string>>();
+        private IDictionary<ErrorType, Func<IEnumerable<Error>, int, string>> errorHandles = new Dictionary<ErrorType, Func<IEnumerable<Error>, int, string>>();
 
         private void InitErrorHandle()
         {
-            errorHandle.Add(ErrorType.EmptyInput, BuildEmptyInputText);
-            errorHandle.Add(ErrorType.Develop_DuplicateCommand, BuildInvalidTypesText);
-            errorHandle.Add(ErrorType.Develop_DuplicateProperty, BuildInvalidTypesText);
-            errorHandle.Add(ErrorType.Develop_InvalidCommand, BuildInvalidTypesText);
-            errorHandle.Add(ErrorType.Develop_InvalidProperty, BuildInvalidTypesText);
-            errorHandle.Add(ErrorType.Develop_MissingCommand, BuildInvalidTypesText);
-            errorHandle.Add(ErrorType.Develop_PropertyTypeCannotWrite, BuildInvalidTypesText);
-            errorHandle.Add(ErrorType.Develop_PropertyTypeMismatch, BuildInvalidTypesText);
-            errorHandle.Add(ErrorType.DuplicateArgument, BuildDuplicatePropertyText);
-            errorHandle.Add(ErrorType.VersionRequest, BuildVersionText);
-            errorHandle.Add(ErrorType.HelpRequest, BuildHelpRequestText);
-            errorHandle.Add(ErrorType.MissingCommand, BuildMissingCommandText);
-            errorHandle.Add(ErrorType.UnknownCommand, BuildUnknownCommandText);
-            errorHandle.Add(ErrorType.CommandHelpRequest, BuildCommandHelpRequestText);
-            errorHandle.Add(ErrorType.MissingRequestProperty, BuildMissingRequestPropertyText);
+            errorHandles.Add(ErrorType.EmptyInput, BuildEmptyInputText);
+            errorHandles.Add(ErrorType.Develop_DuplicateCommand, BuildInvalidTypesText);
+            errorHandles.Add(ErrorType.Develop_DuplicateProperty, BuildInvalidTypesText);
+            errorHandles.Add(ErrorType.Develop_InvalidCommand, BuildInvalidTypesText);
+            errorHandles.Add(ErrorType.Develop_InvalidProperty, BuildInvalidTypesText);
+            errorHandles.Add(ErrorType.Develop_MissingCommand, BuildInvalidTypesText);
+            errorHandles.Add(ErrorType.Develop_PropertyTypeCannotWrite, BuildInvalidTypesText);
+            errorHandles.Add(ErrorType.Develop_PropertyTypeMismatch, BuildInvalidTypesText);
+            errorHandles.Add(ErrorType.DuplicateArgument, BuildDuplicatePropertyText);
+            errorHandles.Add(ErrorType.VersionRequest, BuildVersionText);
+            errorHandles.Add(ErrorType.HelpRequest, BuildHelpRequestText);
+            errorHandles.Add(ErrorType.MissingCommand, BuildMissingCommandText);
+            errorHandles.Add(ErrorType.UnknownCommand, BuildUnknownCommandText);
+            errorHandles.Add(ErrorType.CommandHelpRequest, BuildCommandHelpRequestText);
+            errorHandles.Add(ErrorType.MissingRequestProperty, BuildMissingRequestPropertyText);
+
+            InitInvalidTypeHandles();
         }
 
         private string OnError(IEnumerable<Error> errors, int maximumDisplayWidth)
         {
-            foreach (var pair in errorHandle)
+            foreach (var pair in errorHandles)
             {
                 if (errors.Any(e => e.ErrorType == pair.Key)) { return pair.Value(errors, maximumDisplayWidth); }
             }
