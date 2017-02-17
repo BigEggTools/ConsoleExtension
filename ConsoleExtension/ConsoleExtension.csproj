@@ -105,6 +105,9 @@
     <Compile Include="Parameters\Output\TextBuilder.OnError.VersionRequest.cs">
       <DependentUpon>TextBuilder.OnError.cs</DependentUpon>
     </Compile>
+    <Compile Include="Parameters\Output\TextBuilder.OnSuccess.cs">
+      <DependentUpon>TextBuilder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Parameters\ParameterConstants.cs" />
     <Compile Include="Parameters\Parser.cs" />
     <Compile Include="Parameters\ParserSettings.cs" />

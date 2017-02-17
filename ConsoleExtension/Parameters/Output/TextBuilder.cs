@@ -28,6 +28,8 @@
             {
                 case ParserResultType.ParseFailed:
                     return OnError(((ParseFailedResult)result).Errors, maximumDisplayWidth);
+                case ParserResultType.ParseSuccess:
+                    return OnSuccess((ParseSuccessResult)result, maximumDisplayWidth);
                 default:
                     return string.Empty;
             }

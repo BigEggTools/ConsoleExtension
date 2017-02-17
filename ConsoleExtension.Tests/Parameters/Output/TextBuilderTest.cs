@@ -12,6 +12,7 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Results;
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
     using BigEgg.Tools.ConsoleExtension.Parameters;
+    using FakeParameters;
 
     [TestClass]
     public class TextBuilderTest : TestClassBase
@@ -250,6 +251,16 @@
                 {
                     new MissingRequestPropertyError("Clone", new List<string> { "repository" })
                 });
+            var output = textBuilder.Build(parseResult);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(output));
+        }
+
+        [TestMethod]
+        public void BuildTest_OnSuccess()
+        {
+            var textBuilder = mockContainer.GetExportedValue<ITextBuilder>();
+
+            var parseResult = new ParseSuccessResult(new GitClone() { Repository = "https://abc.com" }, typeof(GitClone));
             var output = textBuilder.Build(parseResult);
             Assert.IsFalse(string.IsNullOrWhiteSpace(output));
         }
