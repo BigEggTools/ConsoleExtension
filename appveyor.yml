@@ -1,4 +1,4 @@
-version: 0.1.{build}
+version: 1.0.{build}
 branches:
   only:
   - master
@@ -13,3 +13,7 @@ before_build:
 - cmd: nuget restore
 build:
   verbosity: minimal
+deploy:
+- provider: NuGet
+  api_key:
+    secure: oKifhsYzHVBJw8GIQ8S81pPe/AeXOCwmgjszFV3kaYb41xKzmWQ79H2VM1H1AsP07zsWB4oLyaX/9x1XdnyWI0D73W5u/ijS7LDoX5kGDQ4=

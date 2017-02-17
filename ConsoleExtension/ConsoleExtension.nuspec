@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>BigEgg.Tools.ConsoleExtension</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>BigEgg</authors>
+    <owners>BigEgg</owners>
+    <licenseUrl>https://github.com/BigEggTools/ConsoleExtension/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/BigEggTools/ConsoleExtension</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The extension library for console program.</description>
+    <releaseNotes>Support the output progress bar and console arguments parser.</releaseNotes>
+    <copyright>Copyright 2017 BigEgg</copyright>
+    <tags>BigEgg Console Argument Parser Progress</tags>
+  </metadata>
+</package>
