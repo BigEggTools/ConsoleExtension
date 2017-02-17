@@ -13,9 +13,9 @@
             SupportedTypes = supportedTypes;
         }
 
-        public string TypeName { get; set; }
-        public string PropertyName { get; set; }
-        public string CurrentType { get; set; }
-        public IList<string> SupportedTypes { get; set; }
+        public string TypeName { get; private set; }
+        public string PropertyName { get; private set; }
+        public string CurrentType { get; private set; }
+        public IList<string> SupportedTypes { get; private set; }
     }
 }

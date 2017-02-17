@@ -31,6 +31,6 @@
         /// <value>
         ///   <c>true</c> if should stops processing parse; otherwise, <c>false</c>.
         /// </value>
-        public bool StopProcessing { get; set; }
+        public bool StopProcessing { get; private set; }
     }
 }

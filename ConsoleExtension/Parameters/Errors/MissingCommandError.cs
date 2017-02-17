@@ -16,6 +16,6 @@
             CommandAttributes = commandAttributes;
         }
 
-        public IEnumerable<CommandAttribute> CommandAttributes { get; set; }
+        public IEnumerable<CommandAttribute> CommandAttributes { get; private set; }
     }
 }

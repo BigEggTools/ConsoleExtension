@@ -20,6 +20,6 @@
 
         public string CommandName { get; private set; }
 
-        public IEnumerable<CommandAttribute> CommandAttributes { get; set; }
+        public IEnumerable<CommandAttribute> CommandAttributes { get; private set; }
     }
 }

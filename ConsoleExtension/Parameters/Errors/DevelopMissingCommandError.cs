@@ -8,6 +8,6 @@
             TypeName = typeName;
         }
 
-        public string TypeName { get; set; }
+        public string TypeName { get; private set; }
     }
 }

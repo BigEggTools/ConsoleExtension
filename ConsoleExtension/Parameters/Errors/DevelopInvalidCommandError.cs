@@ -11,9 +11,9 @@
             Regex = regex;
         }
 
-        public string TypeName { get; set; }
-        public string PropertyName { get; set; }
-        public InvalidType InvalidType { get; set; }
-        public string Regex { get; set; }
+        public string TypeName { get; private set; }
+        public string PropertyName { get; private set; }
+        public InvalidType InvalidType { get; private set; }
+        public string Regex { get; private set; }
     }
 }

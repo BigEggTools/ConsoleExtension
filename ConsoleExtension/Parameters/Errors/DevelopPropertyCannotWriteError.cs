@@ -9,7 +9,7 @@
             PropertyName = propertyName;
         }
 
-        public string TypeName { get; set; }
-        public string PropertyName { get; set; }
+        public string TypeName { get; private set; }
+        public string PropertyName { get; private set; }
     }
 }
