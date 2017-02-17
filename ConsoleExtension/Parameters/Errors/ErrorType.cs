@@ -28,7 +28,7 @@
         /// <summary>
         /// User input unknown command
         /// </summary>
-        UnKnownCommand,
+        UnknownCommand,
         /// <summary>
         /// User not input specific the command
         /// </summary>

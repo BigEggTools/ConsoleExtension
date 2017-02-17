@@ -186,5 +186,39 @@
             var output = textBuilder.Build(parseResult);
             Assert.IsFalse(string.IsNullOrWhiteSpace(output));
         }
+
+        [TestMethod]
+        public void BuildTest_MissingCommand()
+        {
+            var textBuilder = mockContainer.GetExportedValue<ITextBuilder>();
+
+            var parseResult = new ParseFailedResult(
+                new List<Error>()
+                {
+                    new MissingCommandError(new List<CommandAttribute>()
+                    {
+                        new CommandAttribute("Clone", "Clone a repository into a new directory")
+                    })
+                });
+            var output = textBuilder.Build(parseResult);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(output));
+        }
+
+        [TestMethod]
+        public void BuildTest_UnknownCommand()
+        {
+            var textBuilder = mockContainer.GetExportedValue<ITextBuilder>();
+
+            var parseResult = new ParseFailedResult(
+                new List<Error>()
+                {
+                    new UnknownCommandError("Error", new List<CommandAttribute>()
+                    {
+                        new CommandAttribute("Clone", "Clone a repository into a new directory")
+                    })
+                });
+            var output = textBuilder.Build(parseResult);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(output));
+        }
     }
 }

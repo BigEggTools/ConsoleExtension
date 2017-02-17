@@ -88,6 +88,9 @@
     <Compile Include="Parameters\Output\TextBuilder.OnError.HelpRequest.cs">
       <DependentUpon>TextBuilder.OnError.cs</DependentUpon>
     </Compile>
+    <Compile Include="Parameters\Output\TextBuilder.OnError.InvalidCommand.cs">
+      <DependentUpon>TextBuilder.OnError.cs</DependentUpon>
+    </Compile>
     <Compile Include="Parameters\Output\TextBuilder.OnError.InvalidTypes.cs">
       <DependentUpon>TextBuilder.OnError.cs</DependentUpon>
     </Compile>

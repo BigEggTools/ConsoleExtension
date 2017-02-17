@@ -23,6 +23,8 @@
             errorHandle.Add(ErrorType.DuplicateArgument, BuildDuplicatePropertyText);
             errorHandle.Add(ErrorType.VersionRequest, BuildVersionText);
             errorHandle.Add(ErrorType.HelpRequest, BuildHelpRequestText);
+            errorHandle.Add(ErrorType.MissingCommand, BuildMissingCommandText);
+            errorHandle.Add(ErrorType.UnknownCommand, BuildUnknownCommandText);
         }
 
         private string OnError(IEnumerable<Error> errors, int maximumDisplayWidth)

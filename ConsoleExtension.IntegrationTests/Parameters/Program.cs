@@ -19,6 +19,8 @@
             RunTest("Version Request", "--version", typeof(GitClone));
             RunTest("TypeCheck Request", "--clone", typeof(GitClone), typeof(EmptyClass), typeof(InvalidCommandParam), typeof(InvalidPropertyParam));
             RunTest("Help Request", "--help", typeof(GitClone), typeof(GitPull));
+            RunTest("Mising Command", "--repository http://abc.com", typeof(GitClone), typeof(GitPull));
+            RunTest("Unknown Command", "error --repository http://abc.com", typeof(GitClone), typeof(GitPull));
 
             Console.WriteLine("All test complete.");
             Console.ReadKey();

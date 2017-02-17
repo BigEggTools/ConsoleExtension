@@ -63,7 +63,9 @@
             };
             processor.Process(context);
 
-            Assert.IsTrue(context.Errors.Any(error => error.ErrorType == ErrorType.MissingCommand));
+            var missingCommandError = context.Errors.FirstOrDefault(error => error.ErrorType == ErrorType.MissingCommand) as MissingCommandError;
+            Assert.IsNotNull(missingCommandError);
+            Assert.AreEqual(2, missingCommandError.CommandAttributes.Count());
         }
 
         [TestMethod]
@@ -96,7 +98,9 @@
             };
             processor.Process(context);
 
-            Assert.IsTrue(context.Errors.Any(error => error.ErrorType == ErrorType.UnKnownCommand));
+            var unknownCommandError = context.Errors.FirstOrDefault(error => error.ErrorType == ErrorType.UnknownCommand) as UnknownCommandError;
+            Assert.IsNotNull(unknownCommandError);
+            Assert.AreEqual(1, unknownCommandError.CommandAttributes.Count());
         }
     }
 }

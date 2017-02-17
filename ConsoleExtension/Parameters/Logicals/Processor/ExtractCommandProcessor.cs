@@ -31,7 +31,8 @@
                 }
                 else
                 {
-                    context.Errors.Add(new MissingCommandError());
+                    var commandAttributes = context.Types.Select(type => type.GetCommandAttributes());
+                    context.Errors.Add(new MissingCommandError(commandAttributes));
                 }
             }
             else
@@ -46,7 +47,8 @@
                 }
                 else
                 {
-                    context.Errors.Add(new UnknownCommandError(commandToken.Value));
+                    var commandAttributes = context.Types.Select(type => type.GetCommandAttributes());
+                    context.Errors.Add(new UnknownCommandError(commandToken.Value, commandAttributes));
                 }
             }
         }
