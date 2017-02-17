@@ -30,7 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>BigEgg.Tools.ConsoleExtension.IntegrationTests.Parameters.Program</StartupObject>
+    <StartupObject>BigEgg.Tools.ConsoleExtension.IntegrationTests.ProgressBar.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

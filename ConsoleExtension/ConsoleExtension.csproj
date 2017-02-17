@@ -130,6 +130,7 @@
     <Compile Include="Parameters\Utils\ReflectionExtionsions.cs" />
     <Compile Include="Parameters\Utils\StringExtensions.cs" />
     <Compile Include="Parameters\Utils\ProgramInfo.cs" />
+    <Compile Include="ProgressBar\TextProgressBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

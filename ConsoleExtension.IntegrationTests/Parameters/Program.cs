@@ -1,13 +1,18 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.IntegrationTests.Parameters
 {
     using System;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.Composition.Hosting;
+    using System.Reflection;
 
     using BigEgg.Tools.ConsoleExtension.Parameters;
 
     using BigEgg.Tools.ConsoleExtension.IntegrationTests.Parameters.Params;
 
-    public partial class Program : ProgramBase
+    public class Program
     {
+        private static CompositionContainer container;
+        private static AggregateCatalog catalog;
         private const int HEADER_LENGTH = 40;
 
         public static void Main(string[] args)
