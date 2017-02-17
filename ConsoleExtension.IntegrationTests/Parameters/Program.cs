@@ -35,7 +35,7 @@
             Console.WriteLine($"app.exe {arguments}");
 
             var args = arguments.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            var parameter = new Parser(container, ParserSettings.Builder().WithDefault().CaseSensitive(false).ComputeDisplayWidth().Build()).Parse(args, types);
+            var parameter = new Parser(container, ParserSettings.Builder().WithDefault().ComputeDisplayWidth().Build()).Parse(args, types);
 
             Console.WriteLine();
             Console.ReadKey();

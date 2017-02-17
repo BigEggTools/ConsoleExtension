@@ -118,7 +118,7 @@
             public ParserSettingsBuilder WithDefault()
             {
                 instance.HelpWriter = Console.Error;
-                instance.CaseSensitive = true;
+                instance.CaseSensitive = false;
                 instance.IgnoreUnknownArguments = true;
                 instance.MaximumDisplayWidth = Constants.DEFAULT_MAX_CONSOLE_LENGTH;
                 return this;
