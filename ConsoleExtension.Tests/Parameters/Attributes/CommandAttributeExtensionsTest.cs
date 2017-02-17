@@ -109,7 +109,7 @@
         [TestMethod]
         public void ValidateTest_HelpMessageToLong()
         {
-            var errors = new CommandAttribute("Clone", new string('a', 129)).Validate("Git");
+            var errors = new CommandAttribute("Clone", new string('a', 257)).Validate("Git");
             Assert.AreEqual(1, errors.Count);
             var error = errors.First() as DevelopInvalidCommandError;
             Assert.AreEqual(InvalidType.TooLong, error.InvalidType);

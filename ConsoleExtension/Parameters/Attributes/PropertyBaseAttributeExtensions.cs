@@ -11,7 +11,7 @@
     {
         private static readonly Regex PROPERTY_LONG_NAME_VALIDATE_REGEX = new Regex("^[a-zA-Z0-9_]{1,16}$");
         private static readonly Regex PROPERTY_SHORT_NAME_VALIDATE_REGEX = new Regex("^[a-zA-Z0-9_]{1,3}$");
-        private static readonly Regex PROPERTY_HELP_MESSAGE_VALIDATE_REGEX = new Regex("^.{1,128}$");
+        private static readonly Regex PROPERTY_HELP_MESSAGE_VALIDATE_REGEX = new Regex("^.{1,256}$");
         private static readonly IDictionary<PropertyAttributeType, Func<string, _PropertyInfo, DevelopPropertyTypeMismatchError>> validateTypeMatch;
 
         static PropertyBaseAttributeExtensions()
@@ -28,7 +28,7 @@
             if (error != null) { result.Add(error); }
             error = ValidateProperty(attribute.ShortName, typeName, propertyInfo, "ShortName", 3, PROPERTY_SHORT_NAME_VALIDATE_REGEX);
             if (error != null) { result.Add(error); }
-            error = ValidateProperty(attribute.HelpMessage, typeName, propertyInfo, "HelpMessage", 128, PROPERTY_HELP_MESSAGE_VALIDATE_REGEX);
+            error = ValidateProperty(attribute.HelpMessage, typeName, propertyInfo, "HelpMessage", 256, PROPERTY_HELP_MESSAGE_VALIDATE_REGEX);
             if (error != null) { result.Add(error); }
 
             var typeMatchError = validateTypeMatch[attribute.PropertyAttributeType](typeName, propertyInfo);

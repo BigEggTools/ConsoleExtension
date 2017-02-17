@@ -212,7 +212,7 @@
             mockPropertyInfo.SetupGet(p => p.CanWrite).Returns(true);
             mockPropertyInfo.SetupGet(p => p.PropertyType).Returns(typeof(string));
 
-            var errors = new StringPropertyAttribute("repository", "rep", new string('a', 129)).Validate("Git", mockPropertyInfo.Object);
+            var errors = new StringPropertyAttribute("repository", "rep", new string('a', 257)).Validate("Git", mockPropertyInfo.Object);
             Assert.AreEqual(1, errors.Count);
             var error = errors.First() as DevelopInvalidPropertyError;
             Assert.AreEqual(InvalidType.TooLong, error.InvalidType);

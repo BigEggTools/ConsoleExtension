@@ -8,7 +8,7 @@
     internal static class CommandAttributeExtensions
     {
         private static Regex COMMAND_NAME_VALIDATE_REGEX = new Regex("^[a-zA-Z0-9-]{1,16}$");
-        private static Regex COMMAND_HELP_MESSAGE_VALIDATE_REGEX = new Regex("^.{1,128}$");
+        private static Regex COMMAND_HELP_MESSAGE_VALIDATE_REGEX = new Regex("^.{1,256}$");
 
 
         public static IList<Error> Validate(this CommandAttribute attribute, string typeName)
@@ -23,7 +23,7 @@
 
             var error = ValidateProperty(attribute.Name, typeName, "Name", 16, COMMAND_NAME_VALIDATE_REGEX);
             if (error != null) { result.Add(error); }
-            error = ValidateProperty(attribute.HelpMessage, typeName, "HelpMessage", 128, COMMAND_HELP_MESSAGE_VALIDATE_REGEX);
+            error = ValidateProperty(attribute.HelpMessage, typeName, "HelpMessage", 256, COMMAND_HELP_MESSAGE_VALIDATE_REGEX);
             if (error != null) { result.Add(error); }
 
             return result;
