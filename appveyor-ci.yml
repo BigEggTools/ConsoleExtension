@@ -1,4 +1,4 @@
-version: CI.{branch}.{build}
+version: CI.{build}-{branch}
 branches:
   except:
   - master
