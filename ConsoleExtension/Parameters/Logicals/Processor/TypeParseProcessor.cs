@@ -19,6 +19,7 @@
         {
             propertyHandlers = new Dictionary<PropertyAttributeType, Func<object, PropertyBaseAttribute, PropertyInfo, bool, IList<Token>, bool>>();
             propertyHandlers.Add(PropertyAttributeType.String, HandleStringProperty);
+            propertyHandlers.Add(PropertyAttributeType.Boolean, HandleBooleanProperty);
         }
 
 
@@ -77,6 +78,28 @@
             {
                 propertyInfo.SetValue(command, attribute.DefaultValue);
             }
+            return true;
+        }
+
+        private bool HandleBooleanProperty(
+            object command,
+            PropertyBaseAttribute attributeBase,
+            PropertyInfo propertyInfo,
+            bool caseSensitive,
+            IList<Token> tokens)
+        {
+            var attribute = attributeBase as BooleanPropertyAttribute;
+            var token = tokens.FirstOrDefault(t => t.TokenType == TokenType.Flag
+                                                && (t.Name.Equals(attribute.LongName, caseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase)
+                                                 || t.Name.Equals(attribute.ShortName, caseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase)));
+            if (token != null)
+            {
+                propertyInfo.SetValue(command, true);
+                return true;
+            }
+            if (attribute.Required) { return false; }
+
+            propertyInfo.SetValue(command, false);
             return true;
         }
     }

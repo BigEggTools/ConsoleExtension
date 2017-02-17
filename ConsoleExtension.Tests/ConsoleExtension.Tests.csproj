@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Parameters\Attributes\CommandAttributeExtensionsTest.cs" />
     <Compile Include="Parameters\Attributes\PropertyBaseAttributeExtensionsTest.cs" />
+    <Compile Include="Parameters\Attributes\BooleanPropertyAttributeTest.cs" />
     <Compile Include="Parameters\Attributes\StringPropertyAttributeTest.cs" />
     <Compile Include="Parameters\Errors\DevelopDuplicatePropertyErrorTest.cs" />
     <Compile Include="Parameters\Errors\DevelopDuplicateCommandErrorTest.cs" />

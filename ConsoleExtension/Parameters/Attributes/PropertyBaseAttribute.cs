@@ -57,13 +57,5 @@
         ///   <c>true</c> if required; otherwise, <c>false</c>.
         /// </value>
         public bool Required { get; set; }
-
-        /// <summary>
-        /// Gets or sets the default value.
-        /// </summary>
-        /// <value>
-        /// The default value.
-        /// </value>
-        protected object DefaultValue { get; set; }
     }
 }

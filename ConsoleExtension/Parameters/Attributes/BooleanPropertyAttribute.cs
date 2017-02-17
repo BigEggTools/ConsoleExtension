@@ -7,21 +7,13 @@
     /// </summary>
     /// <seealso cref="BigEgg.Tools.ConsoleExtension.Parameters.PropertyBaseAttribute" />
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
-    public sealed class StringPropertyAttribute : PropertyBaseAttribute
+    public sealed class BooleanPropertyAttribute : PropertyBaseAttribute
     {
         /// <param name="longName">The name of the command.</param>
         /// <param name="shortName">The name of the command.</param>
         /// <param name="helpMessage">The help message of the command.</param>
-        public StringPropertyAttribute(string longName, string shortName, string helpMessage)
-            : base(PropertyAttributeType.String, longName, shortName, helpMessage)
+        public BooleanPropertyAttribute(string longName, string shortName, string helpMessage)
+            : base(PropertyAttributeType.Boolean, longName, shortName, helpMessage)
         { }
-
-        /// <summary>
-        /// Gets or sets the default value.
-        /// </summary>
-        /// <value>
-        /// The default value.
-        /// </value>
-        public string DefaultValue { get; set; }
     }
 }

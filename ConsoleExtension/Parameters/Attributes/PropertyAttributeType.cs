@@ -2,6 +2,7 @@
 {
     internal enum PropertyAttributeType
     {
-        String
+        String,
+        Boolean
     }
 }

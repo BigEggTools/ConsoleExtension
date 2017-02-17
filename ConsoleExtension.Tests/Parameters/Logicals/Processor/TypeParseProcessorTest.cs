@@ -50,6 +50,30 @@
 
             var gitClone = context.Command as GitClone;
             Assert.AreEqual("https://abc.com", gitClone.Repository);
+            Assert.IsFalse(gitClone.Recurse);
+        }
+
+        [TestMethod]
+        public void ProcessTest_WithFlag()
+        {
+            var processor = Container.GetExportedValues<IProcessor>()
+                                    .FirstOrDefault(p => p.ProcessorType == ProcessorType.TypeParse);
+            var context = new ProcessorContext(new List<string>() { "clone", "--repository", "https://abc.com", "--Recurse" }, new List<Type>() { typeof(GitClone) }, false);
+            context.Tokens = new List<Token>()
+            {
+                new CommandToken("clone"),
+                new PropertyToken("repository", "https://abc.com"),
+                new FlagToken("Recurse")
+            };
+            context.CommandType = typeof(GitClone);
+            processor.Process(context);
+
+            Assert.IsFalse(context.Errors.Any());
+            Assert.IsNotNull(context.Command);
+
+            var gitClone = context.Command as GitClone;
+            Assert.AreEqual("https://abc.com", gitClone.Repository);
+            Assert.IsTrue(gitClone.Recurse);
         }
 
         [TestMethod]

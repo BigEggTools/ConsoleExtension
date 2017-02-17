@@ -6,18 +6,20 @@
     using System.Text.RegularExpressions;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
+    using System.Linq;
 
     internal static class PropertyBaseAttributeExtensions
     {
         private static readonly Regex PROPERTY_LONG_NAME_VALIDATE_REGEX = new Regex("^[a-zA-Z0-9_]{1,16}$");
         private static readonly Regex PROPERTY_SHORT_NAME_VALIDATE_REGEX = new Regex("^[a-zA-Z0-9_]{1,3}$");
         private static readonly Regex PROPERTY_HELP_MESSAGE_VALIDATE_REGEX = new Regex("^.{1,256}$");
-        private static readonly IDictionary<PropertyAttributeType, Func<string, _PropertyInfo, DevelopPropertyTypeMismatchError>> validateTypeMatch;
+        private static readonly IDictionary<PropertyAttributeType, IList<Type>> validateTypeMatch;
 
         static PropertyBaseAttributeExtensions()
         {
-            validateTypeMatch = new Dictionary<PropertyAttributeType, Func<string, _PropertyInfo, DevelopPropertyTypeMismatchError>>();
-            validateTypeMatch.Add(PropertyAttributeType.String, ValidateStringPropertyAttributeTypeMatch);
+            validateTypeMatch = new Dictionary<PropertyAttributeType, IList<Type>>();
+            validateTypeMatch.Add(PropertyAttributeType.String, new List<Type>() { typeof(string) });
+            validateTypeMatch.Add(PropertyAttributeType.Boolean, new List<Type>() { typeof(bool) });
         }
 
         public static IList<Error> Validate(this PropertyBaseAttribute attribute, string typeName, _PropertyInfo propertyInfo)
@@ -31,7 +33,7 @@
             error = ValidateProperty(attribute.HelpMessage, typeName, propertyInfo, "HelpMessage", 256, PROPERTY_HELP_MESSAGE_VALIDATE_REGEX);
             if (error != null) { result.Add(error); }
 
-            var typeMatchError = validateTypeMatch[attribute.PropertyAttributeType](typeName, propertyInfo);
+            var typeMatchError = ValidatePropertyAttributeTypeMatch(validateTypeMatch[attribute.PropertyAttributeType], typeName, propertyInfo);
             if (typeMatchError != null) { result.Add(typeMatchError); }
 
             if (!propertyInfo.CanWrite) { result.Add(new DevelopPropertyCannotWriteError(typeName, propertyInfo.Name)); }
@@ -60,15 +62,13 @@
             return null;
         }
 
-        private static DevelopPropertyTypeMismatchError ValidateStringPropertyAttributeTypeMatch(string typeName, _PropertyInfo propertyInfo)
+        private static DevelopPropertyTypeMismatchError ValidatePropertyAttributeTypeMatch(IList<Type> supportedTypes, string typeName, _PropertyInfo propertyInfo)
         {
-            var supportedTypes = new List<string>()
-            {
-                typeof(string).Name
-            };
-            if (supportedTypes.Contains(propertyInfo.PropertyType.Name)) { return null; }
+            var typeNames = supportedTypes.Select(type => type.Name).ToList();
 
-            return new DevelopPropertyTypeMismatchError(typeName, propertyInfo.Name, propertyInfo.PropertyType.Name, supportedTypes);
+            if (typeNames.Contains(propertyInfo.PropertyType.Name)) { return null; }
+
+            return new DevelopPropertyTypeMismatchError(typeName, propertyInfo.Name, propertyInfo.PropertyType.Name, typeNames);
         }
     }
 }

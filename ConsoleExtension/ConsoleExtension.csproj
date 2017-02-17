@@ -42,6 +42,7 @@
     <Compile Include="Parameters\Attributes\PropertyAttributeType.cs" />
     <Compile Include="Parameters\Attributes\PropertyBaseAttributeExtensions.cs" />
     <Compile Include="Parameters\Attributes\CommandAttributeExtensions.cs" />
+    <Compile Include="Parameters\Attributes\BooleanPropertyAttribute.cs" />
     <Compile Include="Parameters\Attributes\StringPropertyAttribute.cs" />
     <Compile Include="Parameters\Attributes\PropertyBaseAttribute.cs" />
     <Compile Include="Parameters\Errors\DevelopDuplicatePropertyError.cs" />
