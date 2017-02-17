@@ -11,7 +11,7 @@
     {
         private string BuildMissingCommandText(IEnumerable<Error> errors, int maximumDisplayWidth)
         {
-            var missingCommandError = errors.FirstOrDefault(error => error.ErrorType == ErrorType.MissingCommand) as MissingCommandError;
+            var missingCommandError = errors.Single(error => error.ErrorType == ErrorType.MissingCommand) as MissingCommandError;
 
             var introductionMessage = missingCommandError.CommandAttributes.Count() > 1
                 ? "Application support these commands:"
@@ -33,7 +33,7 @@
 
         private string BuildUnknownCommandText(IEnumerable<Error> errors, int maximumDisplayWidth)
         {
-            var unknownCommandError = errors.FirstOrDefault(error => error.ErrorType == ErrorType.UnknownCommand) as UnknownCommandError;
+            var unknownCommandError = errors.Single(error => error.ErrorType == ErrorType.UnknownCommand) as UnknownCommandError;
 
             var introductionMessage = unknownCommandError.CommandAttributes.Count() > 1
                 ? "Application support these commands:"

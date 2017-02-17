@@ -11,7 +11,7 @@
     {
         private string BuildCommandHelpRequestText(IEnumerable<Error> errors, int maximumDisplayWidth)
         {
-            var error = errors.FirstOrDefault(err => err.ErrorType == ErrorType.CommandHelpRequest) as CommandHelpRequestError;
+            var error = errors.Single(err => err.ErrorType == ErrorType.CommandHelpRequest) as CommandHelpRequestError;
 
             var usage = error.CommandAttribute.Name + " "
                 + string.Join(" ",

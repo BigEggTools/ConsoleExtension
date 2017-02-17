@@ -11,14 +11,14 @@
     {
         private string BuildHelpRequestText(IEnumerable<Error> errors, int maximumDisplayWidth)
         {
-            var helpRequestError = errors.FirstOrDefault(error => error.ErrorType == ErrorType.HelpRequest) as HelpRequestError;
+            var error = errors.Single(e => e.ErrorType == ErrorType.HelpRequest) as HelpRequestError;
 
-            var introductionMessage = helpRequestError.CommandAttributes.Count() > 1
+            var introductionMessage = error.CommandAttributes.Count() > 1
                 ? "Application support these commands:"
                 : "Application support this command:";
 
-            int commandLenght = (int)(Math.Ceiling(helpRequestError.CommandAttributes.Max(attribute => attribute.Name.Length) / ParameterConstants.TAB_LENGTH) * ParameterConstants.TAB_LENGTH);
-            var commandMessages = helpRequestError.CommandAttributes
+            int commandLenght = (int)(Math.Ceiling(error.CommandAttributes.Max(attribute => attribute.Name.Length) / ParameterConstants.TAB_LENGTH) * ParameterConstants.TAB_LENGTH);
+            var commandMessages = error.CommandAttributes
                                                   .Select(attribute => $"    {attribute.Name.FillWithCharacter(commandLenght, ' ')} |  {ParameterConstants.INDEX_START_STRING}{attribute.HelpMessage}");
             return BuildString(new List<string>()
             {

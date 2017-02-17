@@ -9,7 +9,7 @@
     {
         private string BuildDuplicatePropertyText(IEnumerable<Error> errors, int maximumDisplayWidth)
         {
-            var error = errors.First(e => e.ErrorType == ErrorType.DuplicateArgument) as DuplicateArgumentError;
+            var error = errors.Single(e => e.ErrorType == ErrorType.DuplicateArgument) as DuplicateArgumentError;
 
             return BuildString(new List<string>()
             {
