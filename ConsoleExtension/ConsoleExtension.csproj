@@ -52,6 +52,7 @@
     <Compile Include="Parameters\Errors\DevelopDuplicateCommandError.cs" />
     <Compile Include="Parameters\Errors\DevelopMissingCommandError.cs" />
     <Compile Include="Parameters\Errors\InvalidType.cs" />
+    <Compile Include="Parameters\Errors\MissingRequestPropertyError.cs" />
     <Compile Include="Parameters\Errors\MissingCommandError.cs" />
     <Compile Include="Parameters\Errors\UnknownCommandError.cs" />
     <Compile Include="Parameters\Errors\DuplicateArgumentError.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Parameters\Logicals\ProcessorEngine.cs" />
     <Compile Include="Parameters\Logicals\Processor\ProcessorType.cs" />
     <Compile Include="Parameters\Logicals\Processor\TokenizeProcessor.cs" />
+    <Compile Include="Parameters\Logicals\Processor\TypeParseProcessor.cs" />
     <Compile Include="Parameters\Logicals\Processor\VersionProcessor.cs" />
     <Compile Include="Parameters\Output\ITextBuilder.cs" />
     <Compile Include="Parameters\Output\TextBuilder.cs" />
@@ -95,6 +97,9 @@
       <DependentUpon>TextBuilder.OnError.cs</DependentUpon>
     </Compile>
     <Compile Include="Parameters\Output\TextBuilder.OnError.InvalidTypes.cs">
+      <DependentUpon>TextBuilder.OnError.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parameters\Output\TextBuilder.OnError.MissingRequestProperty.cs">
       <DependentUpon>TextBuilder.OnError.cs</DependentUpon>
     </Compile>
     <Compile Include="Parameters\Output\TextBuilder.OnError.VersionRequest.cs">

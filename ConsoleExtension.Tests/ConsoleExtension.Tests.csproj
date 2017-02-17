@@ -69,6 +69,7 @@
     <Compile Include="Parameters\Errors\DevelopMissingCommandErrorTest.cs" />
     <Compile Include="Parameters\Errors\DevelopInvalidPropertyErrorTest.cs" />
     <Compile Include="Parameters\Errors\DevelopPropertyCannotWriteErrorTest.cs" />
+    <Compile Include="Parameters\Errors\MissingRequestPropertyErrorTest.cs" />
     <Compile Include="Parameters\Errors\UnknownCommandErrorTest.cs" />
     <Compile Include="Parameters\Errors\EmptyInputErrorTest.cs" />
     <Compile Include="Parameters\Errors\DuplicateArgumentErrorTest.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Parameters\Logicals\Processor\TokenCheckProcessorTest.cs" />
     <Compile Include="Parameters\Logicals\Processor\TokenizeProcessorTest.cs" />
     <Compile Include="Parameters\Logicals\Processor\TypeCheckProcessorTest.cs" />
+    <Compile Include="Parameters\Logicals\Processor\TypeParseProcessorTest.cs" />
     <Compile Include="Parameters\Logicals\Processor\VersionProcessorTest.cs" />
     <Compile Include="Parameters\Output\TextBuilderTest.cs" />
     <Compile Include="Parameters\ParserSettingsTest.cs" />

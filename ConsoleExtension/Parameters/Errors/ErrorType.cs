@@ -30,9 +30,13 @@
         /// </summary>
         UnknownCommand,
         /// <summary>
-        /// User not input specific the command
+        /// User not input the specific command
         /// </summary>
         MissingCommand,
+        /// <summary>
+        /// User not input the request property
+        /// </summary>
+        MissingRequestProperty,
         /// <summary>
         /// Developer used a type as command which don't have command attribute
         /// </summary>

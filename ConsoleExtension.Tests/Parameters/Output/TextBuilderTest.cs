@@ -239,5 +239,19 @@
             var output = textBuilder.Build(parseResult);
             Assert.IsFalse(string.IsNullOrWhiteSpace(output));
         }
+
+        [TestMethod]
+        public void BuildTest_MissingRequestProperty()
+        {
+            var textBuilder = mockContainer.GetExportedValue<ITextBuilder>();
+
+            var parseResult = new ParseFailedResult(
+                new List<Error>()
+                {
+                    new MissingRequestPropertyError("Clone", new List<string> { "repository" })
+                });
+            var output = textBuilder.Build(parseResult);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(output));
+        }
     }
 }

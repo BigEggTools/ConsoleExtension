@@ -26,6 +26,7 @@
             errorHandle.Add(ErrorType.MissingCommand, BuildMissingCommandText);
             errorHandle.Add(ErrorType.UnknownCommand, BuildUnknownCommandText);
             errorHandle.Add(ErrorType.CommandHelpRequest, BuildCommandHelpRequestText);
+            errorHandle.Add(ErrorType.MissingRequestProperty, BuildMissingRequestPropertyText);
         }
 
         private string OnError(IEnumerable<Error> errors, int maximumDisplayWidth)
