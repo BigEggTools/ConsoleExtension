@@ -2,11 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.Composition.Hosting;
 
     using BigEgg.Tools.ConsoleExtension.Parameters.Logicals;
     using BigEgg.Tools.ConsoleExtension.Parameters.Output;
     using BigEgg.Tools.ConsoleExtension.Parameters.Results;
-    using System.ComponentModel.Composition.Hosting;
 
     /// <summary>
     /// The parser to parse the console arguments
@@ -68,7 +68,15 @@
 
             ParserResult result = engine.Handle(args, types, settings.CaseSensitive);
 
-            settings.HelpWriter.Write(textBuilder.Build(result, settings.MaximumDisplayWidth));
+            var message = textBuilder.Build(result, settings.MaximumDisplayWidth);
+            if (result.ResultType == ParserResultType.ParseFailed)
+            {
+                settings.HelpWriter.Write(message);
+            }
+            else
+            {
+                Console.Out.Write(message);
+            }
             return result.ResultType == ParserResultType.ParseSuccess ?
                 ((ParseSuccessResult)result).Value :
                 null;
