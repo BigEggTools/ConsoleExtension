@@ -37,9 +37,7 @@
         private static void Initialize()
         {
             catalog = new AggregateCatalog();
-            // Add the Framework assembly to the catalog
             catalog.Catalogs.Add(new AssemblyCatalog(typeof(Parser).Assembly));
-            // Add the Bugger.Presentation assembly to the catalog
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
 
             container = new CompositionContainer(catalog);
