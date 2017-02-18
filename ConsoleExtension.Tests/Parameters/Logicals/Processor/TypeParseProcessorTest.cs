@@ -77,6 +77,29 @@
         }
 
         [TestMethod]
+        public void ProcessTest_ShortName()
+        {
+            var processor = Container.GetExportedValues<IProcessor>()
+                                    .FirstOrDefault(p => p.ProcessorType == ProcessorType.TypeParse);
+            var context = new ProcessorContext(new List<string>() { "clone", "--repository", "https://abc.com", "--Recurse" }, new List<Type>() { typeof(GitClone) }, false);
+            context.Tokens = new List<Token>()
+            {
+                new CommandToken("clone"),
+                new PropertyToken("rep", "https://abc.com"),
+                new FlagToken("r")
+            };
+            context.CommandType = typeof(GitClone);
+            processor.Process(context);
+
+            Assert.IsFalse(context.Errors.Any());
+            Assert.IsNotNull(context.Command);
+
+            var gitClone = context.Command as GitClone;
+            Assert.AreEqual("https://abc.com", gitClone.Repository);
+            Assert.IsTrue(gitClone.Recurse);
+        }
+
+        [TestMethod]
         public void ProcessTest_MissingRequestProperty()
         {
             var processor = Container.GetExportedValues<IProcessor>()
