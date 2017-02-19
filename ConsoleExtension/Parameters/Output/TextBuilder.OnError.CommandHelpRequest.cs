@@ -23,11 +23,14 @@
                                               (pa.Required ? "" : "]");
                                    }));
             var propertyInfos = error.PropertyAttributes
-                                     .Select(pa => new Tuple<string, string>(
-                                         $"--{pa.LongName} | --{pa.ShortName}",
+                                     .Select(pa => new Tuple<string, string, string>(
+                                         $"--{pa.LongName}",
+                                         $"--{pa.ShortName}",
                                          pa.HelpMessage));
-            int propertyNameLenght = (int)(Math.Ceiling(propertyInfos.Max(message => message.Item1.Length) / ParameterConstants.TAB_LENGTH) * ParameterConstants.TAB_LENGTH);
-            var propertyHelpMessages = propertyInfos.Select(message => $"    {message.Item1.FillWithCharacter(propertyNameLenght, ' ')}  {ParameterConstants.INDEX_START_STRING}{message.Item2}");
+            int longNameLenght = (int)(Math.Ceiling(propertyInfos.Max(message => message.Item1.Length) / ParameterConstants.TAB_LENGTH) * ParameterConstants.TAB_LENGTH);
+            int shortNameLenght = (int)(Math.Ceiling(propertyInfos.Max(message => message.Item1.Length) / ParameterConstants.TAB_LENGTH) * ParameterConstants.TAB_LENGTH);
+            var propertyHelpMessages = propertyInfos.Select(
+                message => $"    {message.Item1.FillWithCharacter(longNameLenght, ' ')} | {message.Item2.FillWithCharacter(shortNameLenght, ' ')} {ParameterConstants.INDEX_START_STRING}{message.Item3}");
 
             return BuildString(new List<string>()
             {
