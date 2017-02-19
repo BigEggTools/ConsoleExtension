@@ -13,20 +13,31 @@
         {
             var error = errors.Single(e => e.ErrorType == ErrorType.HelpRequest) as HelpRequestError;
 
-            var introductionMessage = error.CommandAttributes.Count() > 1
+            var messages = new List<string>()
+            {
+                ApplicationHeaderText
+            };
+            messages.AddRange(BuildCommandHelpText(error.CommandAttributes));
+
+            return BuildString(messages, maximumDisplayWidth);
+        }
+
+
+        private IEnumerable<string> BuildCommandHelpText(IEnumerable<CommandAttribute> attributes)
+        {
+            var introductionMessage = attributes.Count() > 1
                 ? "Application support these commands:"
                 : "Application support this command:";
 
-            int commandLenght = (int)(Math.Ceiling(error.CommandAttributes.Max(attribute => attribute.Name.Length) / ParameterConstants.TAB_LENGTH) * ParameterConstants.TAB_LENGTH);
-            var commandMessages = error.CommandAttributes
-                                                  .Select(attribute => $"    {attribute.Name.FillWithCharacter(commandLenght, ' ')} |  {ParameterConstants.INDEX_START_STRING}{attribute.HelpMessage}");
-            return BuildString(new List<string>()
+            int commandLenght = (int)(Math.Ceiling(attributes.Max(attribute => attribute.Name.Length) / ParameterConstants.TAB_LENGTH) * ParameterConstants.TAB_LENGTH);
+            var commandMessages = attributes.Select(attribute => $"    {attribute.Name.FillWithCharacter(commandLenght, ' ')} |  {ParameterConstants.INDEX_START_STRING}{attribute.HelpMessage}");
+
+            return new List<string>()
             {
-                ApplicationHeaderText,
                 introductionMessage,
                 string.Join(Environment.NewLine, commandMessages),
                 "For help on command detail, please run <command> --help to check"
-            }, maximumDisplayWidth);
+            };
         }
     }
 }

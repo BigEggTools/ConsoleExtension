@@ -1,6 +1,5 @@
 ﻿namespace BigEgg.Tools.ConsoleExtension.Parameters.Output
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -11,46 +10,32 @@
     {
         private string BuildMissingCommandText(IEnumerable<Error> errors, int maximumDisplayWidth)
         {
-            var missingCommandError = errors.Single(error => error.ErrorType == ErrorType.MissingCommand) as MissingCommandError;
+            var error = errors.Single(err => err.ErrorType == ErrorType.MissingCommand) as MissingCommandError;
 
-            var introductionMessage = missingCommandError.CommandAttributes.Count() > 1
-                ? "Application support these commands:"
-                : "Application support this command:";
-
-            int commandLenght = (int)(Math.Ceiling(missingCommandError.CommandAttributes.Max(attribute => attribute.Name.Length) / ParameterConstants.TAB_LENGTH) * ParameterConstants.TAB_LENGTH);
-            var commandMessages = missingCommandError.CommandAttributes
-                                                     .Select(attribute => $"    {attribute.Name.FillWithCharacter(commandLenght, ' ')} |  {ParameterConstants.INDEX_START_STRING}{attribute.HelpMessage}");
-            return BuildString(new List<string>()
+            var messages = new List<string>()
             {
                 ApplicationHeaderText,
                 ErrorHeaderText(errors),
                 "Not found command. Please specific the command you'd like to execute.",
-                introductionMessage,
-                string.Join(Environment.NewLine, commandMessages),
-                "For help on command detail, please run <command> --help to check"
-            }, maximumDisplayWidth);
+            };
+            messages.AddRange(BuildCommandHelpText(error.CommandAttributes));
+
+            return BuildString(messages, maximumDisplayWidth);
         }
 
         private string BuildUnknownCommandText(IEnumerable<Error> errors, int maximumDisplayWidth)
         {
-            var unknownCommandError = errors.Single(error => error.ErrorType == ErrorType.UnknownCommand) as UnknownCommandError;
+            var error = errors.Single(err => err.ErrorType == ErrorType.UnknownCommand) as UnknownCommandError;
 
-            var introductionMessage = unknownCommandError.CommandAttributes.Count() > 1
-                ? "Application support these commands:"
-                : "Application support this command:";
-
-            int commandLenght = (int)(Math.Ceiling(unknownCommandError.CommandAttributes.Max(attribute => attribute.Name.Length) / ParameterConstants.TAB_LENGTH) * ParameterConstants.TAB_LENGTH);
-            var commandMessages = unknownCommandError.CommandAttributes
-                                                     .Select(attribute => $"    {attribute.Name.FillWithCharacter(commandLenght, ' ')} |  {ParameterConstants.INDEX_START_STRING}{attribute.HelpMessage}");
-            return BuildString(new List<string>()
+            var messages = new List<string>()
             {
                 ApplicationHeaderText,
                 ErrorHeaderText(errors),
-                $"Unknown command '{unknownCommandError.CommandName}' found. Please specific the command you'd like to execute.",
-                introductionMessage,
-                string.Join(Environment.NewLine, commandMessages),
-                "For help on command detail, please run <command> --help to check"
-            }, maximumDisplayWidth);
+                $"Unknown command '{error.CommandName}' found. Please specific the command you'd like to execute.",
+            };
+            messages.AddRange(BuildCommandHelpText(error.CommandAttributes));
+
+            return BuildString(messages, maximumDisplayWidth);
         }
     }
 }
