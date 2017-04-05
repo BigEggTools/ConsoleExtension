@@ -1,18 +1,18 @@
-﻿using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
-using BigEgg.Tools.ConsoleExtension.Parameters.Logicals;
-using BigEgg.Tools.ConsoleExtension.Tests.Parameters.FakeParameters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Logicals
+﻿namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Logicals
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.Composition;
+    using System.ComponentModel.Composition.Hosting;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using Moq;
+
+    using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
+    using BigEgg.Tools.ConsoleExtension.Parameters.Logicals;
+
+    using BigEgg.Tools.ConsoleExtension.Tests.Parameters.FakeParameters;
+
     [TestClass]
     public class ProcessorEngineTest : TestClassBase
     {

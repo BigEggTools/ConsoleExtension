@@ -12,7 +12,8 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Results;
     using BigEgg.Tools.ConsoleExtension.Parameters.Utils;
     using BigEgg.Tools.ConsoleExtension.Parameters;
-    using FakeParameters;
+
+    using BigEgg.Tools.ConsoleExtension.Tests.Parameters.FakeParameters;
 
     [TestClass]
     public class TextBuilderTest : TestClassBase

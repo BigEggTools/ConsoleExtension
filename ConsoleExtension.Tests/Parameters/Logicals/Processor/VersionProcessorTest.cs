@@ -8,6 +8,7 @@
     using BigEgg.Tools.ConsoleExtension.Parameters.Errors;
     using BigEgg.Tools.ConsoleExtension.Parameters.Logicals;
     using BigEgg.Tools.ConsoleExtension.Parameters.Tokens;
+
     using BigEgg.Tools.ConsoleExtension.Tests.Parameters.FakeParameters;
 
     [TestClass]

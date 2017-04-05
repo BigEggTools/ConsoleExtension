@@ -1,5 +1,4 @@
-﻿using System;
-namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Errors
+﻿namespace BigEgg.Tools.ConsoleExtension.Tests.Parameters.Errors
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
